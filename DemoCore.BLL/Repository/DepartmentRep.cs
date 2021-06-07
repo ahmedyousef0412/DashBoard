@@ -88,7 +88,10 @@ namespace DemoCore.BLL.Repository
 
         public void Delete(int id)
         {
+            var oldData = _context.Departments.Find(id);
 
+            _context.Departments.Remove(oldData);
+            _context.SaveChanges();
         }
 
         /////////// Refactor Methods////
