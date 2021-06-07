@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.DAL\\DemoCore.DAL.csproj": {}
+    "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj": {}
   },
   "projects": {
-    "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.DAL\\DemoCore.DAL.csproj": {
+    "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.DAL\\DemoCore.DAL.csproj",
+        "projectUniqueName": "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj",
         "projectName": "DemoCore.DAL",
-        "projectPath": "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.DAL\\DemoCore.DAL.csproj",
+        "projectPath": "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj",
         "packagesPath": "C:\\Users\\win10\\.nuget\\packages\\",
-        "outputPath": "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.DAL\\obj\\",
+        "outputPath": "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

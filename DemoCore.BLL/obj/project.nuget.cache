@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9Yw90yWiCELwC+W2FOBxSqoeinaVNvDmyhOjJ4IML1YbKOGNJY/XDPFHmPg6SJU1WyLuzgboanxZZ6RiUX1T/w==",
+  "dgSpecHash": "I9TqdZ0og4CiYfdFmzw6E0YGAcx7e31bEryFW2ra+QwnSEu+ldHFu59qaEI/23As3garoRV3eXmmqltrcDonRw==",
   "success": true,
-  "projectFilePath": "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.BLL\\DemoCore.BLL.csproj",
+  "projectFilePath": "E:\\ITI\\Test\\DashBoard\\DemoCore.BLL\\DemoCore.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\win10\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

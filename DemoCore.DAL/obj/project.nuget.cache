@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Iy7PmtdU/4nG+8CX/PilI2TOLkfPPMK1tjBF6+E9tGW5R83PsqATWXAkGQi2orlbxQNEyGa6My4FINAzIhjI+A==",
+  "dgSpecHash": "zHTxEytGcmNxsckUUncK6CfPdxqbNp2hR6bxTAozxa9b0P+O4ROjYNSn9IrImV8IaQOZoWX4yLXoR/Po6Oo+bQ==",
   "success": true,
-  "projectFilePath": "E:\\.Net\\Projects\\ProjectCore\\App\\DemoCore.DAL\\DemoCore.DAL.csproj",
+  "projectFilePath": "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\win10\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
