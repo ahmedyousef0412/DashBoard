@@ -11,9 +11,24 @@ namespace DemoCore.BLL.Interfaces
  public interface IDepartmentRep
  {
      IEnumerable<DepartmentVM> Get();
-     DepartmentVM GetById (int id);
-     IEnumerable<DepartmentVM> SearchByName(string Name);  
-     void Create (DepartmentVM Obj);
+
+
+        /// <summary>
+        /// i'm Not Using IEnumerable because i wont return [Just one Row ]
+        /// </summary>
+        
+        DepartmentVM GetById (int id);
+
+
+        /// <summary>
+        /// i'm  Using IEnumerable because i wont return [Just one Row ] but may be i Have
+        /// [one or more Employee have the same name work in one Department]
+        /// </summary>
+        
+        IEnumerable<DepartmentVM> SearchByName(string name);  
+
+
+     void Create (DepartmentVM obj);
      void Edit (DepartmentVM obj); 
      void Delete(int id);
     

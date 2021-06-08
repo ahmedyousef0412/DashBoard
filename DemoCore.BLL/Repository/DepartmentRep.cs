@@ -25,20 +25,22 @@ namespace DemoCore.BLL.Repository
                 .Where(d => d.Id == id)
                 .Select(d => new DepartmentVM
                 {
-                    Id = d.Id,
-                    DepartmentName = d.DepartmentName,
-                    Departmentcode = d.Departmentcode
+                    Id = d.Id, // d.Id Mean The Id in Entity Department
+                    DepartmentName = d.DepartmentName, //d.DepartmentName Mean The DepartmentName in Entity Department
+                    Departmentcode = d.Departmentcode // d.DepartmentCode Mean The  d.DepartmentCode in Entity Department
+
+                    //to Show them I Forms I will Create it
                 }).FirstOrDefault();
             return context;
         }
 
-        public IEnumerable<DepartmentVM> SearchByName(string Name)
+        public IEnumerable<DepartmentVM> SearchByName(string name)
         {
 
             //  here i don't need [FirstOrDefault] because I need Return [List]
 
             var context = _context.Departments
-                .Where(d => d.DepartmentName == Name)
+                .Where(d => d.DepartmentName == name)
                 .Select(d => new DepartmentVM
                 {
                     Id = d.Id,
@@ -57,10 +59,10 @@ namespace DemoCore.BLL.Repository
 
             Department department = new();
 
-            // The DepartmentName That I recive it from user but it in DepartmentName object that i  create it.
+            // The DepartmentName That I receive it from user but it in DepartmentName object that i  create it.
             department.DepartmentName = obj.DepartmentName;
 
-            // The DepartmentCode That I recive it from user but it in DepartmentCode object that i  create it.
+            // The DepartmentCode That I receive it from user but it in DepartmentCode object that i  create it.
             department.Departmentcode = obj.Departmentcode;
 
             _context.Departments.Add(department);
@@ -77,7 +79,7 @@ namespace DemoCore.BLL.Repository
             // that i mean i catch the DepartmentName in database and replace it by obj.DepartmentName
             oldData.DepartmentName = obj.DepartmentName;
 
-            // that i mean i catch the Departmentcode in database and replace it by obj.Departmentcode
+            // that i mean i catch the DepartmentCode in database and replace it by obj.DepartmentCode
 
             oldData.Departmentcode = obj.Departmentcode;
 
