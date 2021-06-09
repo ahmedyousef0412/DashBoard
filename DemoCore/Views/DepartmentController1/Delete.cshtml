@@ -1,0 +1,67 @@
+﻿@model DemoCore.BLL.Models.ViewModels.DepartmentVM
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Layout/MainLayout.cshtml";
+}
+
+<h2>Delete Department</h2>
+<h1>@Model.DepartmentName</h1>
+
+
+
+
+
+<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+
+@*
+
+    I Use [asp-action="Create" asp-controller="DepartmentController1"] because When I Click
+    On Button Reset or Submit  need to go to Controller/Action To See If This Data are [true]
+    or Not
+
+
+*@
+
+<form asp-action="Delete" asp-controller="DepartmentController1" class="form-group">
+
+
+
+    @*<label>Department Id</label>*@
+    <input type="hidden" asp-for="Id" class="form-control" disabled="disabled" />
+    
+    <br/>
+    <label> Department Name </label>
+
+
+
+    @*
+        Using asp-for to told the Input this Data Belong to who
+           Instead Of [Name]
+    *@
+    <input type="text" asp-for="DepartmentName" class="form-control" disabled="disabled" />
+    
+    <br />
+
+
+    <label> Department Code </label>
+    <input type="text" asp-for="Departmentcode" class="form-control" disabled="disabled" />
+    
+
+    <br />
+
+    <center>
+
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+        <a asp-controller="DepartmentController1" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"> Edit Department </a>
+
+        <a asp-controller="DepartmentController1" asp-action="Index" class="btn btn-success"> Back To Department </a>
+
+    </center>
+
+
+</form>
+
+
+
+

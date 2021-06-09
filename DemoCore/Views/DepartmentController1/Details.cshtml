@@ -1,0 +1,38 @@
+﻿@model DemoCore.BLL.Models.ViewModels.DepartmentVM
+@{
+    ViewData["Title"] = "Details";
+
+}
+
+<h2>@Model.DepartmentName Details</h2>
+
+
+<form asp-controller="DepartmentController1" asp-action="Index" class="form-group">
+
+    <label>Department Id</label>
+    <input type="text" asp-for="Id" class="form-control" readonly="readonly" />
+    
+    <br/> 
+    <br/> 
+
+    <label>Department Name</label>
+    <input type="text" asp-for="DepartmentName" class="form-control" disabled="disabled" />
+    <br/> 
+    <br/> 
+    <label>Department Code</label>
+    <input type="text" asp-for="Departmentcode" class="form-control" disabled="disabled" />
+
+    <br/> 
+    <br/> 
+
+
+    <center>
+        
+        
+          <a asp-controller="DepartmentController1" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" > Edit Department </a>
+          <a asp-controller="DepartmentController1" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" > Delete Department </a>
+          <a asp-controller="DepartmentController1" asp-action="Index" class="btn btn-success" > Back To Department </a>
+    </center>
+
+</form>
+

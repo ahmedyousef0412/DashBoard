@@ -1,0 +1,76 @@
+﻿@model DemoCore.BLL.Models.ViewModels.DepartmentVM
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h2>Create New Department </h2>
+
+
+<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+
+@*
+
+    I Use [asp-action="Create" asp-controller="DepartmentController1"] because When I Click
+    On Button Reset or Submit  need to go to Controller/Action To See If This Data are [true]
+    or Not
+
+
+*@
+
+<form asp-action="Create" asp-controller="DepartmentController1" class="form-group">
+
+
+
+
+
+
+
+
+
+
+
+
+    @*
+        Using asp-for to told the Input this Data Belong to who
+           Instead Of [Name]
+    *@
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Department Name </label>
+            <input type="text" asp-for="DepartmentName" class="form-control" />
+            <span asp-validation-for="DepartmentName" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br /> <br />
+
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Department Code </label>
+            <input type="text" asp-for="Departmentcode" class="form-control" />
+            <span asp-validation-for="Departmentcode" class="text-danger"></span>
+        </div>
+    </div>
+    <br /> <br />
+
+    <center>
+
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+        <a asp-controller="DepartmentController1" asp-action="Index" class="btn btn-success"> Back To Department </a>
+
+    </center>
+
+
+</form>
+
+@section MicrosoftValidation {
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+
+

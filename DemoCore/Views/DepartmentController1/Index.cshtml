@@ -1,0 +1,142 @@
+﻿@model IEnumerable<DemoCore.BLL.Models.ViewModels.DepartmentVM>
+
+@{
+    ViewData["Title"] = "Department";
+
+}
+
+@*<h2>Welcome To Departments</h2>*@
+
+
+<div class="block-header">
+    <h1>Welcome To Departments</h1>
+</div>
+
+<a asp-controller="DepartmentController1" asp-action="Create" class="btn btn-primary ">Create New Department</a> 
+<br/> <br/>
+<form asp-controller="DepartmentController1" asp-action="Index" class="form-group">
+        
+    <div class="row">
+            
+        <div class="col-lg-5">
+            <input type="text" placeholder="Search By Departmnet Name" class="form-control" name="SearchValue" autocomplete=""/>
+
+        </div>
+            
+        <div class="col-lg-2">
+                
+            <input type="submit" class="btn btn-primary" value="Search"/>
+        </div>
+    </div>
+        
+        
+
+</form>
+
+<br />
+<br />
+
+
+<style>
+    th {
+        text-align: center
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Welcome To Department</h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);">Action</a></li>
+                                <li><a href="javascript:void(0);">Another action</a></li>
+                                <li><a href="javascript:void(0);">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover text-center font-weight-bold js-basic-example dataTable">
+                            <thead>
+                            <tr class="thead-dark">
+                                <th>Id</th>
+                                <th>DepartmentName</th>
+                                <th>DepartmentCode</th>
+                                <th>Details</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.DepartmentName</td>
+                                    <td>@item.Departmentcode</td>
+                                    <td><a asp-controller="DepartmentController1" asp-action="Details" asp-route-Id="@item.Id" class="btn btn-success ">Details</a></td>
+                                    <td><a asp-controller="DepartmentController1" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-success ">Edit</a></td>
+                                    <td><a asp-controller="DepartmentController1" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger ">Delete</a></td>
+                
+
+
+                                </tr>
+                            }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+
+@*<table class="table table-bordered table-striped table-hover text-center font-weight-bold">
+
+
+    <caption>Show Data</caption>
+    
+    
+
+
+
+
+</table>*@
+
+@section MyTableData
+{
+    <script>
+    
+
+        $(function () {
+            $('.js-basic-example').DataTable({
+                responsive: true,
+                paging: true,
+                pageLength: 5,
+                bSort: true,
+                bFilter: true,
+                bLengthChange: true,
+                bInfo: true,
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+
+            });
+        });
+
+
+
+    </script>
+}
+
