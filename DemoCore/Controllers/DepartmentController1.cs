@@ -52,14 +52,12 @@ namespace DemoCore.Controllers
             {
                var data= _departmentRep.SearchByName(SearchValue);
                 return View(data);
-                Console.WriteLine("hELLO");
-                Console.WriteLine("hELLO");
-                Console.WriteLine("hELLO");
+                
 
             }
 
+
             
-           
         }
 
         //This Action Just for Form View 
