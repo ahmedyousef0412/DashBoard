@@ -6011,11 +6011,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ITI\\Test\\DashBoard\\DemoCore.BLL\\DemoCore.BLL.csproj",
+      "projectUniqueName": "E:\\Test Demo\\Demo\\DemoCore.BLL\\DemoCore.BLL.csproj",
       "projectName": "DemoCore.BLL",
-      "projectPath": "E:\\ITI\\Test\\DashBoard\\DemoCore.BLL\\DemoCore.BLL.csproj",
+      "projectPath": "E:\\Test Demo\\Demo\\DemoCore.BLL\\DemoCore.BLL.csproj",
       "packagesPath": "C:\\Users\\win10\\.nuget\\packages\\",
-      "outputPath": "E:\\ITI\\Test\\DashBoard\\DemoCore.BLL\\obj\\",
+      "outputPath": "E:\\Test Demo\\Demo\\DemoCore.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6035,8 +6035,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj": {
-              "projectPath": "E:\\ITI\\Test\\DashBoard\\DemoCore.DAL\\DemoCore.DAL.csproj"
+            "E:\\Test Demo\\Demo\\DemoCore.DAL\\DemoCore.DAL.csproj": {
+              "projectPath": "E:\\Test Demo\\Demo\\DemoCore.DAL\\DemoCore.DAL.csproj"
             }
           }
         }

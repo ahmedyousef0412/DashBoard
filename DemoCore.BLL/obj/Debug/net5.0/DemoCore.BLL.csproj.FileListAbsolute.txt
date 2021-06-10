@@ -43,3 +43,18 @@ E:\ITI\Test\DashBoard\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.csproj.CopyComp
 E:\ITI\Test\DashBoard\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.dll
 E:\ITI\Test\DashBoard\DemoCore.BLL\obj\Debug\net5.0\ref\DemoCore.BLL.dll
 E:\ITI\Test\DashBoard\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.pdb
+E:\Test Demo\Demo\DemoCore.BLL\bin\Debug\net5.0\DemoCore.BLL.deps.json
+E:\Test Demo\Demo\DemoCore.BLL\bin\Debug\net5.0\DemoCore.BLL.dll
+E:\Test Demo\Demo\DemoCore.BLL\bin\Debug\net5.0\ref\DemoCore.BLL.dll
+E:\Test Demo\Demo\DemoCore.BLL\bin\Debug\net5.0\DemoCore.BLL.pdb
+E:\Test Demo\Demo\DemoCore.BLL\bin\Debug\net5.0\DemoCore.DAL.dll
+E:\Test Demo\Demo\DemoCore.BLL\bin\Debug\net5.0\DemoCore.DAL.pdb
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.csprojAssemblyReference.cache
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.AssemblyInfoInputs.cache
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.AssemblyInfo.cs
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.csproj.CoreCompileInputs.cache
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.csproj.CopyComplete
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.dll
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\ref\DemoCore.BLL.dll
+E:\Test Demo\Demo\DemoCore.BLL\obj\Debug\net5.0\DemoCore.BLL.pdb
