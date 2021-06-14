@@ -10,8 +10,17 @@ namespace DemoCore.BLL.Repository
 {
     public   class DepartmentRep : IDepartmentRep
     {
-        private readonly DataContext _context = new();
+        private readonly DataContext context;
 
+        public DepartmentRep(DataContext context)
+        {
+            this.context = context;
+        }
+
+       
+
+        
+        
         public IEnumerable<DepartmentVM> Get()
        {
            var data = GetAllData();
@@ -21,7 +30,7 @@ namespace DemoCore.BLL.Repository
 
         public DepartmentVM GetById(int id)
         {
-            var context = _context.Departments
+            var data =context .Departments
                 .Where(d => d.Id == id)
                 .Select(d => new DepartmentVM
                 {
@@ -31,7 +40,7 @@ namespace DemoCore.BLL.Repository
 
                     //to Show them I Forms I will Create it
                 }).FirstOrDefault();
-            return context;
+            return data;
         }
 
         public IEnumerable<DepartmentVM> SearchByName(string name)
@@ -39,7 +48,7 @@ namespace DemoCore.BLL.Repository
 
             //  here i don't need [FirstOrDefault] because I need Return [List]
 
-            var context = _context.Departments
+            var data = context.Departments
                 .Where(d => d.DepartmentName == name)
                 .Select(d => new DepartmentVM
                 {
@@ -48,7 +57,7 @@ namespace DemoCore.BLL.Repository
                     Departmentcode = d.Departmentcode
                 });
 
-            return context;
+            return data;
 
         }
 
@@ -65,8 +74,8 @@ namespace DemoCore.BLL.Repository
             // The DepartmentCode That I receive it from user but it in DepartmentCode object that i  create it.
             department.Departmentcode = obj.Departmentcode;
 
-            _context.Departments.Add(department);
-            _context.SaveChanges();
+            context.Departments.Add(department);
+            context.SaveChanges();
 
 
         }
@@ -74,7 +83,7 @@ namespace DemoCore.BLL.Repository
         public void Edit(DepartmentVM obj)
         {
             //Catch By Id
-            var oldData = _context.Departments.Find(obj.Id);
+            var oldData = context.Departments.Find(obj.Id);
 
             // that i mean i catch the DepartmentName in database and replace it by obj.DepartmentName
             oldData.DepartmentName = obj.DepartmentName;
@@ -84,23 +93,23 @@ namespace DemoCore.BLL.Repository
             oldData.Departmentcode = obj.Departmentcode;
 
             
-            _context.SaveChanges();
+            context.SaveChanges();
 
         }
 
         public void Delete(int id)
         {
-            var oldData = _context.Departments.Find(id);
+            var oldData = context.Departments.Find(id);
 
-            _context.Departments.Remove(oldData);
-            _context.SaveChanges();
+            context.Departments.Remove(oldData);
+            context.SaveChanges();
         }
 
         /////////// Refactor Methods////
 
         private IQueryable<DepartmentVM> GetAllData()
         {
-            return _context.Departments
+            return context.Departments
                 .Select(a => new DepartmentVM
                 {
                     Id = a.Id,

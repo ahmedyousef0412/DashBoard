@@ -49,7 +49,6 @@ E:\Test Demo\Demo\DemoCore.DAL\bin\Debug\net5.0\DemoCore.DAL.runtimeconfig.dev.j
 E:\Test Demo\Demo\DemoCore.DAL\bin\Debug\net5.0\DemoCore.DAL.dll
 E:\Test Demo\Demo\DemoCore.DAL\bin\Debug\net5.0\ref\DemoCore.DAL.dll
 E:\Test Demo\Demo\DemoCore.DAL\bin\Debug\net5.0\DemoCore.DAL.pdb
-E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.csprojAssemblyReference.cache
 E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.GeneratedMSBuildEditorConfig.editorconfig
 E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.AssemblyInfoInputs.cache
 E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.AssemblyInfo.cs
@@ -58,3 +57,4 @@ E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.dll
 E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\ref\DemoCore.DAL.dll
 E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.pdb
 E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.genruntimeconfig.cache
+E:\Test Demo\Demo\DemoCore.DAL\obj\Debug\net5.0\DemoCore.DAL.csproj.AssemblyReference.cache

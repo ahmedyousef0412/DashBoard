@@ -6,14 +6,33 @@ using System.Threading.Tasks;
 using DemoCore.BLL.Models.ViewModels;
 using DemoCore.BLL.Repository;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
+using DemoCore.BLL.Interfaces;
 
 namespace DemoCore.Controllers
 {
     public class DepartmentController1 : Controller
     {
-        private readonly DepartmentRep _departmentRep = new DepartmentRep();
 
 
+        //Loosly Coupled
+        private readonly IDepartmentRep IdepartmentRep;
+        public DepartmentController1(IDepartmentRep IdepartmentRep)
+        {
+            this.IdepartmentRep = IdepartmentRep;
+        }
+
+        //Tightly Coupled
+        //private readonly DepartmentRep departmentRep;
+
+        //public DepartmentController1(DepartmentRep departmentRep)
+        //{
+        //    this.departmentRep = departmentRep;
+        //}
+        
+
+
+        // That We How Achive Dependency Injection
+       
 
         public IActionResult Index(string SearchValue = null)
         {
@@ -45,12 +64,13 @@ namespace DemoCore.Controllers
 
             if (string.IsNullOrEmpty(SearchValue))
             {
-                var data = _departmentRep.Get();
+                var data = IdepartmentRep.Get();
+
                 return View(data);
             }
             else
             {
-               var data= _departmentRep.SearchByName(SearchValue);
+               var data= IdepartmentRep.SearchByName(SearchValue);
                 return View(data);
                 
 
@@ -68,7 +88,7 @@ namespace DemoCore.Controllers
 
         public IActionResult Details(int id)
         {
-            var data = _departmentRep.GetById(id);
+            var data = IdepartmentRep.GetById(id);
             return View(data);
         }
 
@@ -81,14 +101,14 @@ namespace DemoCore.Controllers
 
                 if (ModelState.IsValid) //Using Validation
                 {
-                    _departmentRep.Create(model);
+                    IdepartmentRep.Create(model);
 
                     return RedirectToAction("Index");
                 }
 
                 return View();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return View();
             }
@@ -97,7 +117,7 @@ namespace DemoCore.Controllers
 
         public IActionResult Edit(int id)
         {
-            var olddata = _departmentRep.GetById(id);
+            var olddata = IdepartmentRep.GetById(id);
 
             return View(olddata);
             
@@ -111,7 +131,7 @@ namespace DemoCore.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    _departmentRep.Edit(model);
+                    IdepartmentRep.Edit(model);
                     return RedirectToAction("Index");
                 }
 
@@ -128,7 +148,7 @@ namespace DemoCore.Controllers
 
         public IActionResult Delete(int id)
         {
-            var olddata = _departmentRep.GetById(id);
+            var olddata = IdepartmentRep.GetById(id);
 
             return View(olddata);
         }
@@ -139,12 +159,12 @@ namespace DemoCore.Controllers
 
             try
             {
-                
-                _departmentRep.Delete(model.Id);
+
+                IdepartmentRep.Delete(model.Id);
                 return RedirectToAction("Index");
             }
             catch (Exception e)
-            {
+            { 
                 return View();
             }
 

@@ -1,5 +1,9 @@
+using DemoCore.BLL.Interfaces;
+using DemoCore.BLL.Repository;
+using DemoCore.DAL.DataBase;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,7 +26,26 @@ namespace DemoCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddDbContextPool<DataContext>(opts =>
+            opts.UseSqlServer
+            (Configuration.GetConnectionString("SharpDbContext")));
+
+
+
             services.AddControllersWithViews();
+
+            //[Take Instance Every Request]
+            //services.AddTransient<DepartmentRep>();
+
+            //[Take One Instance For Each User]
+            services.AddScoped<IDepartmentRep , DepartmentRep>();
+
+
+            //[Take Shared Instance For All Users]
+            //services.AddSingleton<DepartmentRep>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

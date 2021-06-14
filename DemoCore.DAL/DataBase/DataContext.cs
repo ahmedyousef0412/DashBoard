@@ -10,13 +10,23 @@ namespace DemoCore.DAL.DataBase
 {
    public class DataContext :DbContext
     {
+
+
+        public DataContext(DbContextOptions<DataContext> opts): base(opts)
+        {
+           
+        }
+
+
+
+
         //public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("server = .; database = CoreDB; Integrated Security = true");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("server = .; database = CoreDB; Integrated Security = true");
+        //}
     }
 
 }
