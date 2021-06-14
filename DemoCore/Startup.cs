@@ -1,4 +1,5 @@
 using DemoCore.BLL.Interfaces;
+using DemoCore.BLL.Mapper;
 using DemoCore.BLL.Repository;
 using DemoCore.DAL.DataBase;
 using Microsoft.AspNetCore.Builder;
@@ -28,13 +29,14 @@ namespace DemoCore
         {
 
 
-            services.AddDbContextPool<DataContext>(opts =>
-            opts.UseSqlServer
-            (Configuration.GetConnectionString("SharpDbContext")));
-
-
-
             services.AddControllersWithViews();
+
+
+            services.AddDbContextPool<DataContext>(opts =>
+            opts.UseSqlServer(Configuration.GetConnectionString("SharpDbContext")));
+
+
+            services.AddAutoMapper(m => m.AddProfile(new DomainProfile()));
 
             //[Take Instance Every Request]
             //services.AddTransient<DepartmentRep>();

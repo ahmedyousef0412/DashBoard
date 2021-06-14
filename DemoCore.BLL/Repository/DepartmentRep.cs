@@ -5,21 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DemoCore.DAL.Entity;
+using AutoMapper;
 
 namespace DemoCore.BLL.Repository
 {
     public   class DepartmentRep : IDepartmentRep
     {
         private readonly DataContext context;
+        private readonly IMapper mapper;
 
-        public DepartmentRep(DataContext context)
+        public DepartmentRep(DataContext context , IMapper mapper )
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
-       
-
-        
+     
         
         public IEnumerable<DepartmentVM> Get()
        {
@@ -30,49 +31,21 @@ namespace DemoCore.BLL.Repository
 
         public DepartmentVM GetById(int id)
         {
-            var data =context .Departments
-                .Where(d => d.Id == id)
-                .Select(d => new DepartmentVM
-                {
-                    Id = d.Id, // d.Id Mean The Id in Entity Department
-                    DepartmentName = d.DepartmentName, //d.DepartmentName Mean The DepartmentName in Entity Department
-                    Departmentcode = d.Departmentcode // d.DepartmentCode Mean The  d.DepartmentCode in Entity Department
-
-                    //to Show them I Forms I will Create it
-                }).FirstOrDefault();
-            return data;
+            return GetDepartmentById(id);
         }
+
 
         public IEnumerable<DepartmentVM> SearchByName(string name)
         {
-
-            //  here i don't need [FirstOrDefault] because I need Return [List]
-
-            var data = context.Departments
-                .Where(d => d.DepartmentName == name)
-                .Select(d => new DepartmentVM
-                {
-                    Id = d.Id,
-                    DepartmentName = d.DepartmentName,
-                    Departmentcode = d.Departmentcode
-                });
-
-            return data;
+            return SearchByNameOnDepartment(name);
 
         }
+
 
         public void Create(DepartmentVM obj)
         {
 
-
-
-            Department department = new();
-
-            // The DepartmentName That I receive it from user but it in DepartmentName object that i  create it.
-            department.DepartmentName = obj.DepartmentName;
-
-            // The DepartmentCode That I receive it from user but it in DepartmentCode object that i  create it.
-            department.Departmentcode = obj.Departmentcode;
+            var department = mapper.Map<Department>(obj);
 
             context.Departments.Add(department);
             context.SaveChanges();
@@ -83,14 +56,19 @@ namespace DemoCore.BLL.Repository
         public void Edit(DepartmentVM obj)
         {
             //Catch By Id
-            var oldData = context.Departments.Find(obj.Id);
+            //var oldData = context.Departments.Find(obj.Id);
 
-            // that i mean i catch the DepartmentName in database and replace it by obj.DepartmentName
-            oldData.DepartmentName = obj.DepartmentName;
+            //// that i mean i catch the DepartmentName in database and replace it by obj.DepartmentName
+            //oldData.DepartmentName = obj.DepartmentName;
 
-            // that i mean i catch the DepartmentCode in database and replace it by obj.DepartmentCode
+            //// that i mean i catch the DepartmentCode in database and replace it by obj.DepartmentCode
 
-            oldData.Departmentcode = obj.Departmentcode;
+            //oldData.Departmentcode = obj.Departmentcode;
+
+
+            var department = mapper.Map<Department>(obj);
+            context.Entry(department).State = 
+                Microsoft.EntityFrameworkCore.EntityState.Modified;
 
             
             context.SaveChanges();
@@ -105,7 +83,41 @@ namespace DemoCore.BLL.Repository
             context.SaveChanges();
         }
 
+
+
+
+
         /////////// Refactor Methods////
+
+
+        private IEnumerable<DepartmentVM> SearchByNameOnDepartment(string name)
+        {
+
+            //  here i don't need [FirstOrDefault] because I need Return [List]
+
+            return context.Departments
+                .Where(d => d.DepartmentName == name)
+                .Select(d => new DepartmentVM
+                {
+                    Id = d.Id,
+                    DepartmentName = d.DepartmentName,
+                    Departmentcode = d.Departmentcode
+                });
+        }
+        private DepartmentVM GetDepartmentById(int id)
+        {
+            var data = context.Departments
+                .Where(d => d.Id == id)
+                .Select(d => new DepartmentVM
+                {
+                    Id = d.Id, // d.Id Mean The Id in Entity Department
+                    DepartmentName = d.DepartmentName, //d.DepartmentName Mean The DepartmentName in Entity Department
+                    Departmentcode = d.Departmentcode // d.DepartmentCode Mean The  d.DepartmentCode in Entity Department
+
+                    //to Show them I Forms I will Create it
+                }).FirstOrDefault();
+            return data;
+        }
 
         private IQueryable<DepartmentVM> GetAllData()
         {

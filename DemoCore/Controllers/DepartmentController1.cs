@@ -12,15 +12,17 @@ namespace DemoCore.Controllers
 {
     public class DepartmentController1 : Controller
     {
+        private readonly IDepartmentRep departmentRep;
+
+
 
 
         //Loosly Coupled
-        private readonly IDepartmentRep IdepartmentRep;
-        public DepartmentController1(IDepartmentRep IdepartmentRep)
-        {
-            this.IdepartmentRep = IdepartmentRep;
-        }
 
+        public DepartmentController1(IDepartmentRep departmentRep)
+        {
+            this.departmentRep = departmentRep;
+        }
         //Tightly Coupled
         //private readonly DepartmentRep departmentRep;
 
@@ -64,13 +66,13 @@ namespace DemoCore.Controllers
 
             if (string.IsNullOrEmpty(SearchValue))
             {
-                var data = IdepartmentRep.Get();
+                var data = departmentRep.Get();
 
                 return View(data);
             }
             else
             {
-               var data= IdepartmentRep.SearchByName(SearchValue);
+               var data= departmentRep.SearchByName(SearchValue);
                 return View(data);
                 
 
@@ -88,7 +90,7 @@ namespace DemoCore.Controllers
 
         public IActionResult Details(int id)
         {
-            var data = IdepartmentRep.GetById(id);
+            var data = departmentRep.GetById(id);
             return View(data);
         }
 
@@ -101,7 +103,7 @@ namespace DemoCore.Controllers
 
                 if (ModelState.IsValid) //Using Validation
                 {
-                    IdepartmentRep.Create(model);
+                    departmentRep.Create(model);
 
                     return RedirectToAction("Index");
                 }
@@ -117,7 +119,7 @@ namespace DemoCore.Controllers
 
         public IActionResult Edit(int id)
         {
-            var olddata = IdepartmentRep.GetById(id);
+            var olddata = departmentRep.GetById(id);
 
             return View(olddata);
             
@@ -131,10 +133,10 @@ namespace DemoCore.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    IdepartmentRep.Edit(model);
+                    departmentRep.Edit(model);
                     return RedirectToAction("Index");
                 }
-
+              
                 else
                 {
                     return View();
@@ -148,7 +150,7 @@ namespace DemoCore.Controllers
 
         public IActionResult Delete(int id)
         {
-            var olddata = IdepartmentRep.GetById(id);
+            var olddata = departmentRep.GetById(id);
 
             return View(olddata);
         }
@@ -160,7 +162,7 @@ namespace DemoCore.Controllers
             try
             {
 
-                IdepartmentRep.Delete(model.Id);
+                departmentRep.Delete(model.Id);
                 return RedirectToAction("Index");
             }
             catch (Exception e)
