@@ -1,6 +1,6 @@
 ﻿@model DemoCore.BLL.Models.ViewModels.EmployeeVM
 @{
-    ViewData["Title"] = "Employee Edit";
+    ViewBag.Title = "Employee Edit";
 
 }
 
@@ -21,96 +21,93 @@
 
 *@
 
-<form  asp-controller="Employee" asp-action="Edit"   class="form-group">
+<form asp-controller="Employee" asp-action="Edit" method="post" class="form-group">
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="EmployeeName"> Name</label>
+            <input type="text" asp-for="EmployeeName" class="form-control" />
+            <span class="text-danger" asp-validation-for="EmployeeName"></span>
+        </div>
+    </div>
+   
+    <br /><br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="Salary"> Salary</label>
+            <input type="text" asp-for="Salary" class="form-control" />
+            <span class="text-danger" asp-validation-for="Salary"></span>
+        </div>
+    </div>
+   
+    <br /><br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="Address"> Address</label>
+            <input type="text" asp-for="Address" class="form-control" />
+            <span class="text-danger" asp-validation-for="Address"></span>
+        </div>
+    </div>
+    
+    <br /><br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="Email"> Email</label>
+            <input type="email" asp-for="Email" class="form-control" />
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+    </div>
+
+    
+    <br /><br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="HireDate">Hire Date</label>
+            <input type="date" asp-for="HireDate" class="form-control" />
+            <span class="text-danger" asp-validation-for="HireDate"></span>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="Notes">Notes</label>
+            <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+            <span class="text-danger" asp-validation-for="Notes"></span>
+        </div>
+    </div>
+
+    <br /><br />
 
 
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="DepartmentId">Department</label>
+            <select asp-for="DepartmentId" class="form-control"  asp-items="@ViewBag.department">
+                <option>Choose Department</option>
+            </select>
+            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+        </div>
+    </div>
 
-    @*<label>Department Id</label>*@
-    <input type="hidden" asp-for="Id" class="form-control" disabled="disabled" />
+    <br /><br />
+
+    <div class="custom-control custom-checkbox row">
+        <div class="col-lg-5">
+            <input type="checkbox" asp-for="IsActive" class="custom-control-input">
+            <label class="custom-control-label" asp-for="IsActive"> Is Active</label>
+            <span class="text-danger" asp-validation-for="IsActive"></span>
+        </div>
+    </div>
+
 
     <br />
-    <label> Employee Name </label>
-
-
-
-    @*
-        Using asp-for to told the Input this Data Belong to who
-           Instead Of [Name]
-    *@
-    <input type="text" asp-for="EmployeeName" class="form-control" disabled="disabled" />
-
-    <br />
-
-
-    <label> Salary </label>
-    <input type="text" asp-for="Salary" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-    <br />
-
-
-    <label> Email </label>
-    <input type="text" asp-for="Email" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-    <br />
-
-
-    <label> Address </label>
-    <input type="text" asp-for="Address" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-    <br />
-
-
-    <label> IsActive </label>
-    <input type="text" asp-for="IsActive" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-    <br />
-
-
-    <label> Notes </label>
-    <input type="text" asp-for="Notes" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-    <br />
-
-
-    <label> Hire Date </label>
-    <input type="text" asp-for="HireDate" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-    <br />
-
-
-    <label> Department Name </label>
-    <input type="text" asp-for="DepartmentId" class="form-control" disabled="disabled" />
-
-
-    <br />
-
-
     <center>
-
         <input type="submit" value="Edit" class="btn btn-primary" />
-        @*<input type="reset" value="Cancle" class="btn btn-danger" />*@
-        <a asp-controller="Employee" asp-action="Index" class="btn btn-success"> Back To Employee </a>
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-success"> Back To Department </a>
 
     </center>
-
 
 </form>
 

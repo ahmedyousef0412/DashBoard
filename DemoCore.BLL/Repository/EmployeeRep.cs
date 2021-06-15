@@ -33,7 +33,7 @@ namespace DemoCore.BLL.Repository
 
         public EmployeeVM GetById(int id)
         {
-            return GetById(id);
+            return GetEmployeeById(id);
             
         }
 

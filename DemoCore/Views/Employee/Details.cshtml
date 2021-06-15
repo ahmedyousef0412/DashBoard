@@ -23,7 +23,7 @@
 
 *@
 
-<form  asp-controller="Employee" asp-action="Details"  class="form-group">
+<form asp-controller="Employee" asp-action="Details" class="form-group">
 
     <label>Employee Id</label>
     <input type="text" asp-for="Id" class="form-control" readonly="readonly" />
@@ -75,10 +75,8 @@
 
     <br />
 
-
-    <label> IsActive </label>
-    <input type="text" asp-for="IsActive" class="form-control" disabled="disabled" />
-
+    <input type="checkbox" class="custom-control-input " form-control"" asp-for="IsActive" />
+    <label class="custom-control-input" asp-for="IsActive">Is Active?</label>
 
     <br />
 
@@ -86,7 +84,7 @@
 
 
     <label> Notes </label>
-    <input type="text" asp-for="Notes" class="form-control" disabled="disabled" />
+    <textarea asp-for="Notes" class="form-control" rows="4" disabled></textarea>
 
 
     <br />
@@ -103,10 +101,10 @@
     <br />
 
 
-    <label> Department Name </label>
-    <input type="text" asp-for="DepartmentId" class="form-control" disabled="disabled" />
-
-
+    <label asp-for="DepartmentId">Department</label>
+    <select asp-for="DepartmentId" disabled asp-items="@(SelectList)ViewBag.department">
+        <option>Choose Department</option>
+    </select>
     <br />
 
 

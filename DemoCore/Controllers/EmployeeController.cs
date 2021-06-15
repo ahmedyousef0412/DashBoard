@@ -32,12 +32,13 @@ namespace DemoCore.Controllers
 
            
         }
-
+        
         public IActionResult Details(int id)
         {
             var data = employeeRep.GetById(id);
             return View(data);
         }
+        
         public IActionResult Create()
         {
 
@@ -73,12 +74,13 @@ namespace DemoCore.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var data = employeeRep.GetById(id);
             var depart = departmentRep.Get();
-            ViewBag.department = new SelectList(depart, "Id", "DepartmentName",data.DepartmentId);
+            ViewBag.department = new SelectList
+                (depart, "Id", "DepartmentName",data.DepartmentId);
             return View(data);
         }
 
