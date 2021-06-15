@@ -43,6 +43,7 @@ namespace DemoCore
 
             //[Take One Instance For Each User]
             services.AddScoped<IDepartmentRep , DepartmentRep>();
+            services.AddScoped<IEmployeeRep, EmployeeRep>();
 
 
             //[Take Shared Instance For All Users]

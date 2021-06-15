@@ -21,6 +21,10 @@ namespace DemoCore.DAL.Entity
 
         public string Departmentcode { get; set; }
 
+
+        public virtual ICollection<Employee> Employees { get; set; }
+
+
         // to told here the relation between the Employee and Department is [one to many]
         //public ICollection<Employee> Employee { get; set; }
     }

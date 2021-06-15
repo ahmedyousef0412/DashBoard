@@ -1,0 +1,140 @@
+﻿
+@model DemoCore.BLL.Models.ViewModels.EmployeeVM
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h2>Create New Employee </h2>
+
+
+<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+
+@*
+
+    I Use [asp-action="Create" asp-controller="DepartmentController1"] because When I Click
+    On Button Reset or Submit  need to go to Controller/Action To See If This Data are [true]
+    or Not
+
+
+*@
+
+<form asp-action="Create" asp-controller="Employee" class="form-group">
+
+
+
+    @*
+        Using asp-for to told the Input this Data Belong to who
+           Instead Of [Name]
+    *@
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Name </label>
+            <input type="text" asp-for="EmployeeName" class="form-control" />
+            <span asp-validation-for="EmployeeName" class="text-danger"></span>
+        </div>
+
+    </div>
+    <br /> <br />
+
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Salary </label>
+            <input type="text" asp-for="Salary" class="form-control" />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+        </div>
+    </div>
+    <br /> <br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Address </label>
+            <input type="text" asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Email </label>
+            <input type="email"  asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <br /> <br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label> HireDate </label>
+            <input type="date" asp-for="HireDate" class="form-control" />
+            <span asp-validation-for="HireDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <br /> <br />
+    
+
+           <div class="row">
+               <div class="col-lg-5 custom-control custom-checkbox ">
+
+                   <input type="checkbox" class="custom-control-input" asp-for="IsActive" class="form-control" />
+                   <label class="custom-control-input" asp-for="IsActive">Is Active?</label>
+
+               </div>
+               <span asp-validation-for="IsActive" class="text-danger"></span>
+           </div>
+     
+    <br /> <br />
+    
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Notes </label>
+            <textarea asp-for="Notes" class="form-control" rows="4" ></textarea>
+           
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+    </div>
+
+    <br /> <br />
+    <br /> <br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label asp-for="DepartmentId">Department</label>
+            <select asp-for="DepartmentId" asp-items="@(SelectList)ViewBag.department">
+                <option>Choose Department</option>
+            </select>
+            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+
+        </div>
+    </div>
+
+    <br /> <br />
+
+
+
+    <center>
+
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-success"> Back To Employee </a>
+
+    </center>
+
+
+</form>
+
+@section MicrosoftValidation {
+    
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+
+
+
+

@@ -17,6 +17,10 @@ namespace DemoCore.BLL.Mapper
         {
             CreateMap<Department, DepartmentVM>();
             CreateMap<DepartmentVM, Department>();
+
+
+            CreateMap<Employee, EmployeeVM>();
+            CreateMap<EmployeeVM, Employee>();
         }
     }
 

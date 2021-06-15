@@ -1,0 +1,128 @@
+﻿
+@model DemoCore.BLL.Models.ViewModels.EmployeeVM
+@{
+    ViewBag.Title = "Employee Delete";
+
+}
+
+
+<h1>@Model.EmployeeName</h1>
+
+
+
+
+
+<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+
+@*
+
+    I Use [asp-action="Create" asp-controller="EmployeeController"] because When I Click
+    On Button Reset or Submit  need to go to Controller/Action To See If This Data are [true]
+    or Not
+
+
+*@
+
+<form  asp-controller="Employee" asp-action="Delete"  class="form-group">
+
+
+
+    <input type="hidden" asp-for="Id" class="form-control" disabled="disabled" />
+
+    <br />
+    <label> Employee Name </label>
+
+
+
+    @*
+        Using asp-for to told the Input this Data Belong to who
+           Instead Of [Name]
+    *@
+    <input type="text" asp-for="EmployeeName" class="form-control" disabled="disabled" />
+
+    <br />
+
+
+    <label> Salary </label>
+    <input type="text" asp-for="Salary" class="form-control" disabled="disabled" />
+
+
+    <br />
+
+    <br />
+
+
+    <label> Email </label>
+    <input type="email" asp-for="Email" class="form-control" disabled="disabled" />
+
+
+    <br />
+
+    <br />
+
+
+    <label> Address </label>
+    <input type="text" asp-for="Address" class="form-control" disabled="disabled" />
+
+
+    <br />
+
+    <br />
+
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" disabled asp-for="IsActive" class="custom-control-input">
+        <label class="custom-control-label" asp-for="IsActive"> Is Active</label>
+    </div>
+
+    <br />
+
+    <br />
+
+
+    <label> Notes </label>
+    <textarea asp-for="Notes" disabled class="form-control" rows="4"></textarea>
+
+    <br />
+
+    <br />
+
+
+    <label> Hire Date </label>
+    <input type="text" asp-for="HireDate" class="form-control" disabled="disabled" />
+
+
+    <br /><br />
+
+
+    <label asp-for="DepartmentId">Department</label>
+    <select asp-for="DepartmentId" disabled asp-items="@(SelectList)ViewBag.departmnet">
+        <option>Choose Department</option>
+    </select>
+    <br /><br />
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" disabled asp-for="IsActive" class="custom-control-input">
+        <label class="custom-control-label" asp-for="IsActive"> Is Active</label>
+    </div>
+
+    <br />
+
+
+    <center>
+
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+
+        <a asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"> Edit Employee </a>
+
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-success"> Back To Employee </a>
+
+    </center>
+
+
+</form>
+
+
+
+

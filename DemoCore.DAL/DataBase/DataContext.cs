@@ -18,9 +18,10 @@ namespace DemoCore.DAL.DataBase
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
 
-        //public DbSet<Employee> Employees { get; set; }
+       
 
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -7,6 +7,7 @@ using DemoCore.BLL.Models.ViewModels;
 using DemoCore.BLL.Repository;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
 using DemoCore.BLL.Interfaces;
+using System.Diagnostics;
 
 namespace DemoCore.Controllers
 {
@@ -109,9 +110,12 @@ namespace DemoCore.Controllers
                 }
 
                 return View();
-            }
-            catch (Exception)
+             }
+            catch (Exception )
             {
+                //EventLog log = new();
+                //log.Source = "Admin DashBoard";
+                //log.WriteEntry(e.Message, EventLogEntryType.Error);
                 return View();
             }
             
@@ -142,7 +146,7 @@ namespace DemoCore.Controllers
                     return View();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return View();
             }
@@ -165,7 +169,7 @@ namespace DemoCore.Controllers
                 departmentRep.Delete(model.Id);
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch (Exception)
             { 
                 return View();
             }
