@@ -8,10 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DemoCore
 {
@@ -40,6 +36,8 @@ namespace DemoCore
 
             //[Take Instance Every Request]
             //services.AddTransient<DepartmentRep>();
+
+
 
             //[Take One Instance For Each User]
             services.AddScoped<IDepartmentRep , DepartmentRep>();

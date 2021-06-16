@@ -23,7 +23,7 @@
 
 *@
 
-<form  asp-controller="Employee" asp-action="Delete"  class="form-group">
+<form asp-controller="Employee" asp-action="Delete" class="form-group">
 
 
 
@@ -75,17 +75,15 @@
         <label class="custom-control-label" asp-for="IsActive"> Is Active</label>
     </div>
 
-    <br />
+    <br /><br />
 
-    <br />
+    
 
 
     <label> Notes </label>
     <textarea asp-for="Notes" disabled class="form-control" rows="4"></textarea>
 
-    <br />
-
-    <br />
+    <br /> <br />
 
 
     <label> Hire Date </label>
@@ -101,15 +99,15 @@
     </select>
     <br /><br />
 
-    
 
-   
+
+
 
 
     <center>
 
         <input type="submit" value="Delete" class="btn btn-danger" />
-       
+
 
         <a asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"> Edit Employee </a>
 

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DemoCore.DAL.Entity
 {
-    [Table ("Employee")]
+    [Table ("Employee")] // The Name I need Tp Create The Table Like It.
     public class Employee
     {
 
-        [Key]
+        [Key] //Mean This Is Primary Key
         public int Id { get; set; }
 
 
@@ -25,11 +25,7 @@ namespace DemoCore.DAL.Entity
 
         public float Salary { get; set; }
 
-
-
         public string Address { get; set; }
-
-
 
 
         public DateTime HireDate { get; set; }
@@ -41,7 +37,7 @@ namespace DemoCore.DAL.Entity
 
         public string Email { get; set; }
 
-
+        //Navigation Property [Mean I used It Forign Key]
         public int DepartmentId { get; set; }
 
 

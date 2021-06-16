@@ -39,7 +39,7 @@ namespace DemoCore.BLL.Repository
 
         public IEnumerable<EmployeeVM> SearchByName(string name)
         {
-            return SearchByName(name);
+            return SearchByNameOnEmployee(name);
         }
 
 
@@ -54,7 +54,7 @@ namespace DemoCore.BLL.Repository
         public void Edit(EmployeeVM obj)
         {
             var data = mapper.Map<Employee>(obj);
-            context.Entry(data).State = 
+                context.Entry(data).State = 
                 Microsoft.EntityFrameworkCore.EntityState .Modified;
 
             context.SaveChanges();

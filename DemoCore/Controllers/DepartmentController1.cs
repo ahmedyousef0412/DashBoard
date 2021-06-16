@@ -79,8 +79,6 @@ namespace DemoCore.Controllers
 
             }
 
-
-            
         }
 
         //This Action Just for Form View 

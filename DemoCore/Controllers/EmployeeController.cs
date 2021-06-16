@@ -16,7 +16,7 @@ namespace DemoCore.Controllers
             this.employeeRep = employeeRep;
             this.departmentRep = departmentRep;
         }
-        public IActionResult Index(string SearchValue =null)
+        public IActionResult Index(string SearchValue = null)
         {
 
             if (string.IsNullOrEmpty(SearchValue))
@@ -41,9 +41,16 @@ namespace DemoCore.Controllers
         
         public IActionResult Create()
         {
-
+            /*
+             Here I'm Using [ departmentRep.Get()] because I want to 
+            when i open the page of Create it will be Empty but i need the 
+            [DropDownList have data from [Department]
+             
+             */
             var data = departmentRep.Get();
-            ViewBag.department = new SelectList(data, "Id", "DepartmentName"  );
+            
+            //department have All item in Entity Department and i will loop on it in[view] 
+            ViewBag.department = new SelectList(data, "Id", "DepartmentName");
             return View();
         }
 
@@ -57,6 +64,7 @@ namespace DemoCore.Controllers
                     employeeRep.Create(employee);
                     return RedirectToAction("Index","Employee");
                 }
+                //else
                 var data = departmentRep.Get();
                 ViewBag.department = new SelectList(data, "Id", "DepartmentName",employee.DepartmentId);
                 return View(employee);
