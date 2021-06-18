@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DemoCore.DAL.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +45,9 @@ namespace DemoCore.BLL.Models.ViewModels
         public string Email { get; set; }
 
         public string DepartmentId { get; set; }
+
+        [ForeignKey("DepartmentId")]
+        public Department Department { get; set; }
 
     }
 }

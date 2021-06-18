@@ -3,6 +3,7 @@ using DemoCore.BLL.Interfaces;
 using DemoCore.BLL.Models.ViewModels;
 using DemoCore.DAL.DataBase;
 using DemoCore.DAL.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,45 +26,47 @@ namespace DemoCore.BLL.Repository
 
 
 
-        public IEnumerable<EmployeeVM> Get()
+        public IEnumerable<Employee> Get()
         {
-            var data = GetAllData();
+            var data = context.Employees.Select(e => e);
             return data;
         }
 
-        public EmployeeVM GetById(int id)
+        public Employee GetById(int id)
         {
-            return GetEmployeeById(id);
+            var data = context.Employees.Where(e => e.Id == id).FirstOrDefault();
+            return data;
             
         }
 
-        public IEnumerable<EmployeeVM> SearchByName(string name)
+        public IEnumerable<Employee> SearchByName(string name)
         {
-            return SearchByNameOnEmployee(name);
+
+            var data = context.Employees.Where(e => e.EmployeeName == name).Select(e =>e);
+            return data;
         }
 
 
-        public void Create(EmployeeVM obj)
+        public void Create(Employee obj)
         {
-            var data = mapper.Map<Employee>(obj);
-            context.Employees.Add(data);
+           
+            context.Employees.Add(obj);
             context.SaveChanges();
         }
 
 
-        public void Edit(EmployeeVM obj)
+        public void Edit(Employee obj)
         {
-            var data = mapper.Map<Employee>(obj);
-                context.Entry(data).State = 
-                Microsoft.EntityFrameworkCore.EntityState .Modified;
-
+           
+            context.Entry(obj).State =
+                EntityState.Modified;
             context.SaveChanges();
         }
-        public void Delete(int id)
+        public void Delete(Employee obj)
         {
-            var data = context.Employees.Find(id);
+           
 
-            context.Employees.Remove(data);
+            context.Employees.Remove(obj);
             context.SaveChanges();
         }
 
@@ -74,68 +77,68 @@ namespace DemoCore.BLL.Repository
 
         //////Refactor Method
 
-        private IEnumerable<EmployeeVM> SearchByNameOnEmployee(string name)
-        {
+        //private IEnumerable<EmployeeVM> SearchByNameOnEmployee(string name)
+        //{
 
-            //  here i don't need [FirstOrDefault] because I need Return [List]
+        //    //  here i don't need [FirstOrDefault] because I need Return [List]
 
-            return context.Employees
-                .Where(d => d.EmployeeName == name)
-                .Select(d => new EmployeeVM
-                {
-                    Id = d.Id,
-                    EmployeeName = d.EmployeeName,
-                     Salary= d.Salary,
-                    Address = d.Address,
-                    Notes = d.Notes,
-                    Email = d.Email,
-                    IsActive = d.IsActive,
-                    HireDate = d.HireDate,
-                    DepartmentId = d.Department.DepartmentName
+        //    return context.Employees
+        //        .Where(d => d.EmployeeName == name)
+        //        .Select(d => new EmployeeVM
+        //        {
+        //            Id = d.Id,
+        //            EmployeeName = d.EmployeeName,
+        //             Salary= d.Salary,
+        //            Address = d.Address,
+        //            Notes = d.Notes,
+        //            Email = d.Email,
+        //            IsActive = d.IsActive,
+        //            HireDate = d.HireDate,
+        //            DepartmentId = d.Department.DepartmentName
                      
-                });
-        }
-        private EmployeeVM GetEmployeeById(int id)
-        {
-            var data = context.Employees
-                .Where(d => d.Id == id)
-                .Select(d => new EmployeeVM
-                {
+        //        });
+        //}
+        //private EmployeeVM GetEmployeeById(int id)
+        //{
+        //    var data = context.Employees
+        //        .Where(d => d.Id == id)
+        //        .Select(d => new EmployeeVM
+        //        {
 
-                    Id = d.Id,
-                    EmployeeName = d.EmployeeName,
-                    Salary = d.Salary,
-                    Address = d.Address,
-                    Notes = d.Notes,
-                    Email = d.Email,
-                    IsActive = d.IsActive,
-                    HireDate = d.HireDate,
-                    DepartmentId = d.Department.DepartmentName
+        //            Id = d.Id,
+        //            EmployeeName = d.EmployeeName,
+        //            Salary = d.Salary,
+        //            Address = d.Address,
+        //            Notes = d.Notes,
+        //            Email = d.Email,
+        //            IsActive = d.IsActive,
+        //            HireDate = d.HireDate,
+        //            DepartmentId = d.Department.DepartmentName
 
 
                     
-                }).FirstOrDefault();
-            return data;
-        }
+        //        }).FirstOrDefault();
+        //    return data;
+        //}
 
-        private IQueryable<EmployeeVM> GetAllData()
-        {
-            return context.Employees
-                .Select(a => new EmployeeVM
-                {
+        //private IQueryable<EmployeeVM> GetAllData()
+        //{
+        //    return context.Employees
+        //        .Select(a => new EmployeeVM
+        //        {
 
-                    Id = a.Id,
-                    EmployeeName = a.EmployeeName,
-                    Salary = a.Salary,
-                    Address = a.Address,
-                    Notes = a.Notes,
-                    Email = a.Email,
-                    IsActive = a.IsActive,
-                    HireDate = a.HireDate,
-                    DepartmentId = a.Department.DepartmentName
+        //            Id = a.Id,
+        //            EmployeeName = a.EmployeeName,
+        //            Salary = a.Salary,
+        //            Address = a.Address,
+        //            Notes = a.Notes,
+        //            Email = a.Email,
+        //            IsActive = a.IsActive,
+        //            HireDate = a.HireDate,
+        //            DepartmentId = a.Department.DepartmentName
 
-                });
-        }
+        //        });
+        //}
 
 
 

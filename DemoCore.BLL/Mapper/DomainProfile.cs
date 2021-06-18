@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DemoCore.BLL.DTO;
 using DemoCore.BLL.Models.ViewModels;
 using DemoCore.BLL.Repository;
 using DemoCore.DAL.Entity;

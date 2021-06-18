@@ -1,4 +1,5 @@
 ﻿using DemoCore.BLL.Models.ViewModels;
+using DemoCore.DAL.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace DemoCore.BLL.Interfaces
     {
 
 
-        IEnumerable<EmployeeVM> Get();
+        IEnumerable<Employee> Get();
 
 
         /// <summary>
         /// i'm Not Using IEnumerable because i wont return [Just one Row ]
         /// </summary>
 
-        EmployeeVM GetById(int id);
+        Employee GetById(int id);
 
 
         /// <summary>
@@ -26,12 +27,12 @@ namespace DemoCore.BLL.Interfaces
         /// [one or more Employee have the same name work in one Department]
         /// </summary>
 
-        IEnumerable<EmployeeVM> SearchByName(string name);
+        IEnumerable<Employee> SearchByName(string name);
 
 
-        void Create(EmployeeVM obj);
-        void Edit(EmployeeVM obj);
-        void Delete(int id);
+        void Create(Employee obj);
+        void Edit(Employee obj);
+        void Delete(Employee obj);
 
 
 

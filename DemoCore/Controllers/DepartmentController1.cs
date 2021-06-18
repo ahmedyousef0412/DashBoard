@@ -8,21 +8,27 @@ using DemoCore.BLL.Repository;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
 using DemoCore.BLL.Interfaces;
 using System.Diagnostics;
+using DemoCore.BLL.DTO;
+using AutoMapper;
+using DemoCore.DAL.Entity;
 
 namespace DemoCore.Controllers
 {
     public class DepartmentController1 : Controller
     {
         private readonly IDepartmentRep departmentRep;
+        private readonly IMapper mapper;
+
 
 
 
 
         //Loosly Coupled
 
-        public DepartmentController1(IDepartmentRep departmentRep)
+        public DepartmentController1(IDepartmentRep departmentRep ,IMapper mapper)
         {
             this.departmentRep = departmentRep;
+            this.mapper = mapper;
         }
         //Tightly Coupled
         //private readonly DepartmentRep departmentRep;
@@ -40,43 +46,20 @@ namespace DemoCore.Controllers
         public IActionResult Index(string SearchValue = null)
         {
 
-            
-            #region Test
-
-            //ViewData["viewdata"] = "Hi , I'm ViewData";
-            //ViewBag.viewbag = "Hi , I'm ViewBag";
-            //TempData["tempdata"] = "Hi, I'm TempData";
-
-            //string[] Names = {"Ahmed ", "Omer", "Yousef", "Doha"};
-            //ViewBag.Data = Names;
-            //return RedirectToAction("Index","DepartmentController1");
-
-
-
-            //var emp1 = new Employee() { Id = 1 , Name = "Ahmed" ,Salary = 8000};
-            //var emp2 = new Employee() { Id = 2, Name = "Omer", Salary = 10000 };
-            //var emp3 = new Employee() { Id = 3, Name = "Yousef", Salary = 12000 };
-            //var emp4 = new Employee() { Id = 4, Name = "Doha", Salary = 5000 };
-
-
-
-
-            //ViewBag.data = list;
-
-            #endregion
-
             if (string.IsNullOrEmpty(SearchValue))
             {
-                var data = departmentRep.Get();
 
-                return View(data);
+                var data = departmentRep.Get();
+                var result = mapper.Map<IEnumerable<DepartmentVM>>(data);
+             
+                return View(result);
             }
             else
             {
-               var data= departmentRep.SearchByName(SearchValue);
-                return View(data);
-                
 
+                var data = departmentRep.SearchByName(SearchValue);
+                var result = mapper.Map<IEnumerable<DepartmentVM>>(data);
+                return View(result);
             }
 
         }
@@ -90,7 +73,8 @@ namespace DemoCore.Controllers
         public IActionResult Details(int id)
         {
             var data = departmentRep.GetById(id);
-            return View(data);
+            var result = mapper.Map<DepartmentVM>(data);
+            return View(result);
         }
 
         //This Action responsibility for Receive Data Return From The [Form] 
@@ -102,7 +86,8 @@ namespace DemoCore.Controllers
 
                 if (ModelState.IsValid) //Using Validation
                 {
-                    departmentRep.Create(model);
+                    var data = mapper.Map<Department>(model);
+                    departmentRep.Create(data);
 
                     return RedirectToAction("Index");
                 }
@@ -122,8 +107,9 @@ namespace DemoCore.Controllers
         public IActionResult Edit(int id)
         {
             var olddata = departmentRep.GetById(id);
+            var result = mapper.Map<DepartmentVM>(olddata);
 
-            return View(olddata);
+            return View(result);
             
         }
 
@@ -135,7 +121,8 @@ namespace DemoCore.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    departmentRep.Edit(model);
+                    var data = mapper.Map<Department>(model);
+                        departmentRep.Edit(data);
                     return RedirectToAction("Index");
                 }
               
@@ -153,18 +140,21 @@ namespace DemoCore.Controllers
         public IActionResult Delete(int id)
         {
             var olddata = departmentRep.GetById(id);
+            var result = mapper.Map<DepartmentVM>(olddata);
 
-            return View(olddata);
+            return View(result);
         }
 
             [HttpPost]
-        public IActionResult Delete( DepartmentVM model)
+        public IActionResult Delete(DepartmentVM model)
         {
 
-            try
+            try 
             {
 
-                departmentRep.Delete(model.Id);
+              var data = departmentRep.GetById(model.Id);
+
+                departmentRep.Delete(data);
                 return RedirectToAction("Index");
             }
             catch (Exception)
