@@ -1,0 +1,41 @@
+﻿
+@using DemoCore.BLL.Interfaces
+
+@inject IDepartmentRep department
+@inject IEmployeeRep   employee
+
+@{
+    ViewData["Title"] = "Stors";
+    Layout = "~/Views/Layout/MainLayout.cshtml";
+}
+
+<center>
+    <h2>Welcome To Stors</h2>
+</center>
+
+<h2>List Of Department</h2>
+
+<ul>
+
+    @foreach (var item in department.Get())
+    {
+        <li>@item.DepartmentName</li>
+    }
+
+</ul>
+
+
+<h2>List Of Employees</h2>
+
+<ul>
+
+    @foreach (var item in employee.Get())
+    {
+        <li>@item.EmployeeName</li>
+    }
+
+</ul>
+
+
+
+

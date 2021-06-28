@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace DemoCore
 {
@@ -25,7 +26,15 @@ namespace DemoCore
         {
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(opts => {
+                opts.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                
+                
+            });
+                
+                
+                
+                
 
 
             services.AddDbContextPool<DataContext>(opts =>
@@ -65,6 +74,14 @@ namespace DemoCore
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.UseEndpoints(endpoints =>
             {

@@ -42,7 +42,8 @@ namespace DemoCore.BLL.Repository
         public IEnumerable<Employee> SearchByName(string name)
         {
 
-            var data = context.Employees.Where(e => e.EmployeeName == name).Select(e =>e);
+            var data = context.Employees.Where(e => e.EmployeeName == name)
+             .Select(e =>e);
             return data;
         }
 
