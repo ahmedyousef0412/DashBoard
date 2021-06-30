@@ -25,6 +25,15 @@
 
 <form asp-controller="Employee" asp-action="Details" class="form-group">
 
+
+
+    <img src="~/Files/Imags/@Model.PhotoUrl" width="200" height="300" />
+    <br />     <br />
+
+
+    <a href="~/Files/Docs/@Model.CvUrl"> DownLoad CV</a>
+    <br />     <br />
+
     <label>Employee Id</label>
     <input type="text" asp-for="Id" class="form-control" readonly="readonly" />
 

@@ -1,4 +1,5 @@
 ﻿using DemoCore.DAL.Entity;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -40,10 +41,24 @@ namespace DemoCore.BLL.Models.ViewModels
 
         public string Email { get; set; }
 
-        public string DepartmentId { get; set; }
+        public IFormFile Photo { get; set; }
 
+        public IFormFile CV { get; set; }
+        public string PhotoUrl { get; set; }
+
+        public string CvUrl { get; set; }
+
+        [Required(ErrorMessage = "Choose Department")]
+        public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
-        public Department Department { get; set; }
+        public Department  Department { get; set; }
+
+
+
+        public int DistrictId { get; set; }
+        [ForeignKey("DistrictId")]
+        public virtual District District { get; set; }
+
 
     }
 }

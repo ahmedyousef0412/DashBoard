@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DemoCore.BLL.Helper;
 using DemoCore.BLL.Interfaces;
 using DemoCore.BLL.Models.ViewModels;
 using DemoCore.DAL.Entity;
@@ -6,21 +7,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DemoCore.Controllers
 {
     public class EmployeeController : Controller
     {
+
+        #region Field
         private readonly IEmployeeRep employeeRep;
         private readonly IDepartmentRep departmentRep;
         private readonly IMapper mapper;
+        private readonly ICountryRep countryRep;
+        private readonly ICityRep cityRep;
+        private readonly IDistricRep districRep;
 
-        public EmployeeController(IEmployeeRep employeeRep , IDepartmentRep departmentRep , IMapper mapper)
+        public EmployeeController(IEmployeeRep employeeRep , 
+            IDepartmentRep departmentRep , IMapper mapper,
+            ICountryRep countryRep , ICityRep cityRep 
+            , IDistricRep districRep)
         {
             this.employeeRep = employeeRep;
             this.departmentRep = departmentRep;
             this.mapper = mapper;
+            this.countryRep = countryRep;
+            this.cityRep = cityRep;
+            this.districRep = districRep;
         }
+        #endregion
+
+        #region Actions
         public IActionResult Index(string SearchValue = null)
         {
 
@@ -56,10 +72,11 @@ namespace DemoCore.Controllers
             [DropDownList have data from [Department]
              
              */
-            var data = departmentRep.Get();
-            
+           
             //department have All item in Entity Department and i will loop on it in[view] 
-            ViewBag.department = new SelectList(data, "Id", "DepartmentName");
+            ViewBag.department = new SelectList(departmentRep.Get(), "Id", "DepartmentName");
+
+            ViewBag.country = new SelectList(countryRep.Get(), "Id", "Name");
             return View();
         }
 
@@ -70,7 +87,19 @@ namespace DemoCore.Controllers
             {
                 if(ModelState.IsValid)
                 {
+
+
+                   var CvUrl= UploaderHelper.UploadFile("Files/Docs", employee.CV);
+                   var ImgUrl = UploaderHelper.UploadFile("Files/Imags", employee.Photo);
+
+
+
                     var result = mapper.Map<Employee>(employee);
+
+                    result.CvUrl = CvUrl;
+                    result.PhotoUrl = ImgUrl;
+
+
                     employeeRep.Create(result);
                     return RedirectToAction("Index","Employee");
                 }
@@ -148,10 +177,15 @@ namespace DemoCore.Controllers
         {
             try
             {
+
+
+                UploaderHelper.RemoveFile("Files/Docs/", employee.CvUrl);
+                UploaderHelper.RemoveFile("Files/Imags/", employee.PhotoUrl);
+
                 var oldData = employeeRep.GetById(employee.Id);
                 
                 employeeRep.Delete(oldData);
-                return RedirectToAction("Index","Employee");
+                return RedirectToAction("Index");
             }
             catch (Exception )
             {
@@ -164,6 +198,28 @@ namespace DemoCore.Controllers
 
             }
         }
-       
+        #endregion
+
+        #region Ajax Call
+
+
+        [HttpPost]
+        public JsonResult GetCityDataByCountryId(int CtryId)
+        {
+
+            var data = cityRep.Get().Where(c => c.CountryId == CtryId);
+             return Json(data);
+
+        }
+        [HttpPost]
+        public JsonResult GetDistrictByCityId(int CtyId)
+        {
+            var data = districRep.Get().Where(d => d.CityId == CtyId);
+            return Json(data);
+        }
+
+
+
+        #endregion
     }
 }

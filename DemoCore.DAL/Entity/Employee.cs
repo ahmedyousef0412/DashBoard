@@ -33,6 +33,9 @@ namespace DemoCore.DAL.Entity
         public bool IsActive { get; set; }
 
 
+        public string   PhotoUrl { get; set; }
+
+        public string CvUrl { get; set; }
         public string  Notes { get; set; }
 
         public string Email { get; set; }
@@ -42,7 +45,12 @@ namespace DemoCore.DAL.Entity
 
 
         [ForeignKey("DepartmentId")]
-        public Department Department { get; set; }
+        public virtual Department Department { get; set; }
+
+        public int DistrictId { get; set; }
+
+        [ForeignKey("DistrictId")]
+        public virtual District District { get; set; }
 
     }
 }

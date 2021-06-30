@@ -15,12 +15,12 @@ namespace DemoCore.BLL.Repository
     public class EmployeeRep : IEmployeeRep
     {
         private readonly DataContext context;
-        private readonly IMapper mapper;
+       
 
-        public EmployeeRep(DataContext context , IMapper mapper)
+        public EmployeeRep(DataContext context )
         {
             this.context = context;
-            this.mapper = mapper;
+            
         }
 
 
@@ -28,7 +28,7 @@ namespace DemoCore.BLL.Repository
 
         public IEnumerable<Employee> Get()
         {
-            var data = context.Employees.Select(e => e);
+            var data = context.Employees.Include(c=> c.Department).ToList();
             return data;
         }
 

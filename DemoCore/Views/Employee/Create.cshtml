@@ -19,7 +19,7 @@
 
 *@
 
-<form asp-action="Create" asp-controller="Employee" class="form-group">
+<form asp-action="Create" asp-controller="Employee" class="form-group" enctype="multipart/form-data">
 
 
 
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-lg-5">
             <label> Email </label>
-            <input type="email"  asp-for="Email" class="form-control" />
+            <input type="email" asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
@@ -74,26 +74,26 @@
     </div>
 
     <br /> <br />
-    
 
-           <div class="row">
-               <div class="col-lg-5 custom-control custom-checkbox ">
 
-                   <input type="checkbox" class="custom-control-input" asp-for="IsActive" class="form-control" />
-                   <label class="custom-control-input" asp-for="IsActive">Is Active?</label>
+    <div class="row">
+        <div class="col-lg-5 custom-control custom-checkbox ">
 
-               </div>
-               <span asp-validation-for="IsActive" class="text-danger"></span>
-           </div>
-     
+            <input type="checkbox" class="custom-control-input form-control" asp-for="IsActive" />
+            <label class="custom-control-input" asp-for="IsActive">Is Active?</label>
+
+        </div>
+        <span asp-validation-for="IsActive" class="text-danger"></span>
+    </div>
+
     <br /> <br />
-    
+
 
     <div class="row">
         <div class="col-lg-5">
             <label> Notes </label>
-            <textarea asp-for="Notes" class="form-control" rows="4" ></textarea>
-           
+            <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+
             <span asp-validation-for="Notes" class="text-danger"></span>
         </div>
     </div>
@@ -113,8 +113,59 @@
     </div>
 
     <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label>Country</label>
+            <select id="CountryList" class="form-control" asp-items="@(SelectList)ViewBag.country">
+                <option>Choose Country</option>
+            </select>
 
 
+        </div>
+    </div>
+
+    <br /> <br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label>City</label>
+            <select id="CityList" class="form-control">
+                <option>Choose City</option>
+            </select>
+
+
+        </div>
+    </div>
+
+
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label>District</label>
+            <select asp-for="DistrictId" class="form-control">
+                <option>Choose District</option>
+            </select>
+
+
+        </div>
+    </div>
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Upload Photo </label>
+            <input  asp-for="Photo" class="form-control" />
+            
+        </div>
+    </div>
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Upload CV </label>
+            <input asp-for="CV" class="form-control" />
+           
+        </div>
+    </div>
+    <br /> <br />
 
     <center>
 
@@ -131,6 +182,77 @@
     
     <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+ <script>
+
+     $(function () {
+
+         $("#CountryList").change(function () {
+
+
+             $("#CityList").empty();
+             $("#CityList").append("<option>Choose City</option>");
+
+
+             var CountryId = $("#CountryList option:selected").val();
+
+             $.ajax({
+
+                 type: "POST",
+                 url: "/Employee/GetCityDataByCountryId",
+                 data: { CtryId: CountryId },
+
+                 success: function (res) {
+               
+                     $.each(res, function(i,e) {
+
+                         $("#CityList").append("<option value='" + e.Id + "'>" + e.CityName + "</option>");
+                         $("#CityList").selectpicker('refresh');
+                     });
+                 }
+
+
+             });
+         });
+         
+
+
+     });
+
+     $(function () {
+         
+         $("#CityList").change(function () {
+
+             $("#DistrictId").empty();
+             $("#DistrictId").append("<option>Choose District</option>");
+       
+
+             var CityId = $("#CityList option:selected").val();
+
+             $.ajax({
+
+                 
+                 type: "POST",
+                 url: "/Employee/GetDistrictByCityId",
+                 data: { CtyId: CityId },
+                 success: function (res) {
+               
+                     $.each(res, function (i, e) {
+
+                         $("#DistrictId").append("<option value='" + e.Id + "'>" + e.DistrictName + "</option>");
+                         $("#DistrictId").selectpicker('refresh');
+                     });
+                 }
+             });
+
+         });
+
+
+     });
+
+
+
+ </script>
 }
 
 

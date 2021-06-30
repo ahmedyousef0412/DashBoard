@@ -22,6 +22,15 @@ namespace DemoCore.BLL.Mapper
 
             CreateMap<Employee, EmployeeVM>();
             CreateMap<EmployeeVM, Employee>();
+
+            CreateMap<Country, CountryVM>();
+            CreateMap<CountryVM, Country>();
+
+            CreateMap<City, CityVM>();
+            CreateMap<CityVM, City>();
+
+            CreateMap<District, DistrictVM>();
+            CreateMap<DistrictVM, District>();
         }
     }
 

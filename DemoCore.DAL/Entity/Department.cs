@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DemoCore.DAL.Entity
 {
     [Table("Department")]
-  public  class Department
+    public class Department
     {
         [Key]
         public int Id { get; set; }

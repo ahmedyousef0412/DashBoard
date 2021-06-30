@@ -21,7 +21,11 @@ namespace DemoCore.DAL.DataBase
         public DbSet<Employee> Employees { get; set; }
 
 
-       
+        public DbSet<Country> Country { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<District> District { get; set; }
+
+
 
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
