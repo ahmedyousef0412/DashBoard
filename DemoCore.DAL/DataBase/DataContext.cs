@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DemoCore.DAL.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoCore.DAL.DataBase
 {
-   public class DataContext :DbContext
+   public class DataContext :IdentityDbContext
     {
 
 

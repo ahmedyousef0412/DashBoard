@@ -3,6 +3,7 @@ using DemoCore.BLL.Helper;
 using DemoCore.BLL.Interfaces;
 using DemoCore.BLL.Models.ViewModels;
 using DemoCore.DAL.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 
 namespace DemoCore.Controllers
 {
+    
     public class EmployeeController : Controller
     {
 
@@ -89,10 +91,8 @@ namespace DemoCore.Controllers
                 {
 
 
-                   var CvUrl= UploaderHelper.UploadFile("Files/Docs", employee.CV);
-                   var ImgUrl = UploaderHelper.UploadFile("Files/Imags", employee.Photo);
-
-
+                    var CvUrl = UploaderHelper.UploadFile("Files/Docs", employee.CV);
+                    var ImgUrl = UploaderHelper.UploadFile("Files/Imags", employee.Photo);
 
                     var result = mapper.Map<Employee>(employee);
 
@@ -204,11 +204,15 @@ namespace DemoCore.Controllers
 
 
         [HttpPost]
-        public JsonResult GetCityDataByCountryId(int CtryId)
+   
+        public IActionResult GetCityDataByCountryId(int CtryId)
         {
 
             var data = cityRep.Get().Where(c => c.CountryId == CtryId);
+            //return NotFound();
              return Json(data);
+           
+            
 
         }
         [HttpPost]

@@ -28,7 +28,10 @@ namespace DemoCore.BLL.Repository
 
         public IEnumerable<Employee> Get()
         {
-            var data = context.Employees.Include(c=> c.Department).ToList();
+            var data = context.Employees
+                .Include(c=> c.Department)
+                .Include(c =>c.District)
+                .ToList();
             return data;
         }
 

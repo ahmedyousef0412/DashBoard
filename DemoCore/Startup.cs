@@ -4,6 +4,7 @@ using DemoCore.BLL.Repository;
 using DemoCore.DAL.DataBase;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,16 +34,17 @@ namespace DemoCore
             });
                 
                 
-                
-                
-
+            // Enahancment In Connection String
 
             services.AddDbContextPool<DataContext>(opts =>
             opts.UseSqlServer(Configuration.GetConnectionString("SharpDbContext")));
 
-
+            // AutoMapper
             services.AddAutoMapper(m => m.AddProfile(new DomainProfile()));
 
+
+             // Depependcy Injection
+              
             //[Take Instance Every Request]
             //services.AddTransient<DepartmentRep>();
 
@@ -54,11 +56,16 @@ namespace DemoCore
             services.AddScoped<ICountryRep, CountryRep>();
             services.AddScoped<ICityRep, CityRep>();
             services.AddScoped<IDistricRep, DistrictRep>();
-           
+
 
 
             //[Take Shared Instance For All Users]
             //services.AddSingleton<DepartmentRep>();
+
+
+            /// Identity User To Create Table Belong To [User , Role]
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>();
 
         }
 
@@ -91,7 +98,7 @@ namespace DemoCore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

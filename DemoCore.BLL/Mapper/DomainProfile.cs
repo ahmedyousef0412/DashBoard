@@ -31,6 +31,8 @@ namespace DemoCore.BLL.Mapper
 
             CreateMap<District, DistrictVM>();
             CreateMap<DistrictVM, District>();
+
+
         }
     }
 
