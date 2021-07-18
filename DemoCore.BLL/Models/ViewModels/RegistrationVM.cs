@@ -10,7 +10,7 @@ namespace DemoCore.BLL.Models.ViewModels
    public class RegistrationVM
     {
 
-        [Required(ErrorMessage ="UserName Requird")]
+        [Required(ErrorMessage = "UserName Requird")]
         public string UserName { get; set; }
 
         [Required]

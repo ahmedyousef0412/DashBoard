@@ -286,14 +286,14 @@
                 <div class="image">
                     <img src="~/images/user.png" width="48" height="48" alt="User" />
                 </div>
-                
-                
+
+
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ahmed Yousef  </div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome  </div>
 
                     @if (Manager.IsSignedIn(User))
                     {
-                      <div class="email"> @User.Identity.Name</div>
+                        <div class="email"> @User.Identity.Name</div>
 
                     }
 
@@ -307,23 +307,33 @@
                             <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
                             <li role="seperator" class="divider"></li>
+
+
+
+                            <center>
                             <li>
 
-                                <a asp-controller="Account" asp-action="Login">
-                                    <i class="material-icons">login</i> Sign In
-                                </a>
 
+                                <form asp-controller="Account" asp-action="Login" method="post">
+
+                                    <input type="submit" value="Sign In" style="width:auto; color:white" class="btn btn-primary" />
+
+                                </form>
+
+                                <br />
                             </li>
                             <li>
-                                <form  asp-controller="Account" asp-action="LogOut">
-                                    <input type="submit" value="Sign Out"  style="width:auto; color:red"  class="btn btn-primary" />
-                                     
-                                    
-                                     </form>
-                                
-                                  
-                                
+                                <form asp-controller="Account" asp-action="LogOut" method="post">
+                                    <input type="submit" value="Sign Out" style="width:auto; color:white" class="btn btn-primary" />
+
+
+                                </form>
+
+
+
                             </li>
+                            </center>
+
                         </ul>
                     </div>
                 </div>
@@ -412,6 +422,8 @@
                             </li>
                         </ul>
                     </li>
+
+
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">person</i>
@@ -425,6 +437,9 @@
                             </li>
                         </ul>
                     </li>
+
+
+
 
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -440,6 +455,8 @@
                         </ul>
                     </li>
 
+
+
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">person</i>
@@ -453,6 +470,10 @@
                             </li>
                         </ul>
                     </li>
+
+
+
+
 
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -471,6 +492,27 @@
                             </li>
                         </ul>
                     </li>
+
+
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">person</i>
+                            <span>Roles</span>
+
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a asp-controller="Admin" asp-action="Index">  Role Card </a>
+
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+
                     @*<li>
                             <a href="pages/ui/animations.html">Animations</a>
                         </li>
@@ -952,7 +994,7 @@
     <!-- Custom Js -->
     <script src="~/js/admin.js"></script>
     @*<script src="~/js/pages/index.js"></script>*@
-    <script src="~/js/pages/examples/sign-up.js"></script>
+    @*<script src="~/js/pages/examples/sign-up.js"></script>*@
 
     <!-- Demo Js -->
     <script src="~/js/demo.js"></script>

@@ -29,11 +29,11 @@ namespace DemoCore
 
             services.AddControllersWithViews().AddNewtonsoftJson(opts => {
                 opts.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                
-                
+
+
             });
-                
-                
+
+
             // Enahancment In Connection String
 
             services.AddDbContextPool<DataContext>(opts =>
@@ -43,15 +43,15 @@ namespace DemoCore
             services.AddAutoMapper(m => m.AddProfile(new DomainProfile()));
 
 
-             // Depependcy Injection
-              
+            // Depependcy Injection
+
             //[Take Instance Every Request]
             //services.AddTransient<DepartmentRep>();
 
 
 
             //[Take One Instance For Each User]
-            services.AddScoped<IDepartmentRep , DepartmentRep>();
+            services.AddScoped<IDepartmentRep, DepartmentRep>();
             services.AddScoped<IEmployeeRep, EmployeeRep>();
             services.AddScoped<ICountryRep, CountryRep>();
             services.AddScoped<ICityRep, CityRep>();
@@ -64,8 +64,25 @@ namespace DemoCore
 
 
             /// Identity User To Create Table Belong To [User , Role]
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<DataContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+            {
+                // Default Password settings.
+                opt.Password.RequireDigit = false;
+
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequiredUniqueChars = 0;
+            }).AddEntityFrameworkStores<DataContext>()
+            
+            //Allow Generated Token
+            .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>
+            (TokenOptions.DefaultProvider);
+
+
+
+
 
         }
 
@@ -83,6 +100,8 @@ namespace DemoCore
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -41,36 +41,56 @@
         </div>
         <div class="card">
             <div class="body">
-                <form  method="POST"  asp-action="Login" asp-controller="Account">
+                <form method="POST" asp-action="Login" asp-controller="Account">
+
+
+
+
+                    <div class="msg">Sign In To Start New Session.</div>
+
+
                     <div class="alert-danger" asp-validation-summary="All"> </div>
-                    <div class="msg"></div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control"  placeholder="Username" asp-for="UserName">
-                            <span class="alert-danger" asp-validation-for="UserName"> </span>
+                            <input type="text" class="form-control" placeholder="Email Address" asp-for="Email" autofocus>
+
+                        </div>
+                        <div>
+                            <span class="text-danger" asp-validation-for="Email"> </span>
                         </div>
                     </div>
+
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" asp-for="Password" placeholder="Password" >
-                            <span class="alert-danger" asp-validation-for="Password"></span>
+                            <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                          
+                        </div>
+                        <div>
+                            <span class="text-danger" asp-validation-for="Password"> </span>
                         </div>
                     </div>
+
+
+
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" asp-for="RememberMe" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Remember Me</label>
+                            <input type="checkbox" asp-for="RememberMe" class="filled-in chk-col-pink">
+                            <label asp-for="RememberMe">Remember Me</label>
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <button class="btn btn-block bg-pink waves-effect" type="submit" >SIGN IN</button>
                         </div>
                     </div>
+
+
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
                             <a asp-action="Registeration" asp-controller="Account">Register Now!</a>
