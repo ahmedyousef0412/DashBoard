@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>@ViewBag.Title</title>
+
     <!-- Favicon-->
     <link rel="icon" href="~/favicon.ico" type="image/x-icon">
 
@@ -40,6 +41,11 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="~/css/themes/all-themes.css" rel="stylesheet" />
 </head>
+
+
+
+
+
 <body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
@@ -441,7 +447,7 @@
 
 
 
-                    <li>
+                    @*<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">person</i>
                             <span>Inventory</span>
@@ -469,7 +475,7 @@
 
                             </li>
                         </ul>
-                    </li>
+                    </li>*@
 
 
 
@@ -483,13 +489,13 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a asp-controller="Mail" asp-action="CreateMail"> Inbox </a>
+                                <a asp-controller="Mail" asp-action="Index">Inbox</a>
 
                             </li>
-                            <li>
-                                <a asp-controller="Mail" asp-action="Index"> Send Mail </a>
+                            @*<li>
+                                <a asp-controller="Mail" asp-action="CreateMail">Send Mail</a>
 
-                            </li>
+                            </li>*@
                         </ul>
                     </li>
 
@@ -779,7 +785,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2021 - 2022 <a href="javascript:void(0);">Route -Circle 34</a>.
+                    &copy; 2021 - 2022 <a href="javascript:void(0);"></a>.
                 </div>
                 @*<div class="version">
                         <b>Version: </b> 1.0.5
@@ -932,6 +938,9 @@
         </aside>
         <!-- #END# Right Sidebar -->
     </section>
+
+
+
     <section class="content">
         <div class="container-fluid">
 
@@ -999,6 +1008,15 @@
     <!-- Demo Js -->
     <script src="~/js/demo.js"></script>
 
+
+    <!--
+        I Use [required: false] because If I want need to Use Section In My View
+        Because [RenderSection] bY Default Is [Requird]
+    -->
+
+
+
     @RenderSection("MyTableData", required: false)
 </body>
+
 </html>

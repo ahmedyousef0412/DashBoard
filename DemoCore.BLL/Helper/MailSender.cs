@@ -16,22 +16,26 @@ namespace DemoCore.BLL.Helper
         {
             try
             {
-                using(var smtp = new SmtpClient("smtp.gmail.com",587))
+                using (var smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-
                     smtp.EnableSsl = true;
 
-                    smtp.Credentials = new NetworkCredential("UserName", "Password");
-                    smtp.Send("UserName", "UserName", mail.Title, mail.Message);
+                    smtp.Credentials = new NetworkCredential("lajjayousef66@gmail.com", "01201394400omeryousef");
+                
+                    smtp.Send("lajjayousef66@gmail.com", "ahmedousefy62@gmail.com", mail.Title, mail.Message);
+                    
                 }
-
-
+                
 
                 return "Done ! Mail Sent Successfully";
-            }
-            catch (Exception e)
-            {
 
+
+
+
+            }
+            catch (Exception )
+            {
+            
                 return "Failed To Send E-Mail";
             }
         }

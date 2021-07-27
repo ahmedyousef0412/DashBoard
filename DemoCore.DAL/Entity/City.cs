@@ -10,6 +10,12 @@ namespace DemoCore.DAL.Entity
 {
    public class City
     {
+        /*
+          Use HashSet<Table> For Return Data Without Duplicated
+
+          Use it when My Entity have ICollection
+         
+        */
 
         public City()
         {
@@ -23,6 +29,14 @@ namespace DemoCore.DAL.Entity
         public int CountryId { get; set; }
 
         [ForeignKey("CountryId")]
+
+        /*
+           I use [virtual] Taht Mean I Work Using Eager Load
+           When City Will Call Country
+
+
+         "[The Default Is Lazy Load] => Don't Return The Related Entity
+         */
         public virtual Country Country { get; set; }
 
         public virtual ICollection<District> District { get; set; }

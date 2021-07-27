@@ -4,10 +4,14 @@
 
 }
 
-<h2>Create New Department </h2>
+
+<center >
+    <h2 style="color:red">Create New Department </h2>
+</center>
 
 
-<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+
+
 
 @*
 
@@ -21,11 +25,11 @@
 <form asp-action="Create" asp-controller="DepartmentController1" class="form-group">
 
 
-
+    <div asp-validation-summary="All" class="text-danger"></div>@*Using Validation*@
 
     @*
         Using asp-for to told the Input this Data Belong to who
-           Instead Of [Name]
+           Instead Of [Attribute => name]
     *@
     <div class="row">
         <div class="col-lg-5">

@@ -1,35 +1,28 @@
 ﻿@model DemoCore.BLL.Models.ViewModels.EmployeeVM
+
 @{
-    ViewBag.Title = "Employee Edit";
+    ViewData["Title"] = "Edit";
 
 }
 
-<h2>Edit Employee </h2>
+<h2 style="color:red">Edit Employee </h2>
 
 
 
+<form asp-action="Edit" asp-controller="Employee" class="form-group" enctype="multipart/form-data">
+
+    <div asp-validation-summary="All" class="text-danger"></div> 
 
 
-<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+    <input type="hidden" asp-for="Id" class="form-control" />
 
-@*
-
-    I Use [asp-action="Create" asp-controller="DepartmentController1"] because When I Click
-    On Button Reset or Submit  need to go to Controller/Action To See If This Data are [true]
-    or Not
-
-
-*@
-
-<form asp-controller="Employee" asp-action="Edit" method="post" class="form-group">
-
-
+   
     <img src="~/Files/Imags/@Model.PhotoUrl" width="100" height="100" />
     <br /> <br />
 
-    <a href="~/Files/Docs/@Model.CvUrl">DownLoad CV</a>
+    <a href="~/Files/Docs/@Model.CvUrl" class="btn btn-primary">DownLoad CV</a>
 
-
+    <br /> <br />
     <div class="row">
         <div class="col-lg-5">
             <label asp-for="EmployeeName"> Name</label>
@@ -91,9 +84,9 @@
 
     <div class="row">
         <div class="col-lg-5">
-            <label asp-for="DepartmentId">Department</label>
-            <select asp-for="DepartmentId" class="form-control" asp-items="@ViewBag.department">
-                <option>Choose The Department</option>
+            <label>Department</label>
+            <select asp-for="DepartmentId" class="form-control" asp-items="@(SelectList)ViewBag.department">
+                <option> Choose Department </option>
             </select>
             <span class="text-danger" asp-validation-for="DepartmentId"></span>
         </div>
@@ -113,7 +106,8 @@
     <br />
     <center>
         <input type="submit" value="Edit" class="btn btn-primary" />
-        <a asp-controller="Employee" asp-action="Index" class="btn btn-success"> Back To Department </a>
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-success"> Back To Emplyees </a>
 
     </center>
 

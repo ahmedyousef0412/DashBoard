@@ -5,7 +5,9 @@
 
 }
 
-<h2>Create New Employee </h2>
+<center>
+    <h2 style="color:red">Create New Employee</h2>
+</center>
 
 
 <div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
@@ -104,9 +106,11 @@
     <div class="row">
         <div class="col-lg-5">
             <label asp-for="DepartmentId">Department</label>
+
             <select asp-for="DepartmentId" asp-items="@(SelectList)ViewBag.department">
                 <option>Choose Department</option>
             </select>
+
             <span class="text-danger" asp-validation-for="DepartmentId"></span>
 
         </div>
@@ -116,7 +120,7 @@
     <div class="row">
         <div class="col-lg-5">
             <label>Country</label>
-            <select id="CountryList" class="form-control" asp-items="@(SelectList)ViewBag.country">
+            <select id="CountryList" class="form-control" asp-items="(SelectList)ViewBag.country">
                 <option>Choose Country</option>
             </select>
 
@@ -161,7 +165,7 @@
     <div class="row">
         <div class="col-lg-5">
             <label> Upload CV </label>
-            <input asp-for="CV" class="form-control" />
+            <input  asp-for="CV" class="form-control" />
            
         </div>
     </div>

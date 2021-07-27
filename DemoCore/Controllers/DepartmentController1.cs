@@ -20,9 +20,6 @@ namespace DemoCore.Controllers
         private readonly IMapper mapper;
 
 
-
-
-
         //Loosly Coupled
 
         public DepartmentController1(IDepartmentRep departmentRep ,IMapper mapper)
@@ -30,22 +27,32 @@ namespace DemoCore.Controllers
             this.departmentRep = departmentRep;
             this.mapper = mapper;
         }
-        //Tightly Coupled
+
+        #region Tightly Coupled
+
         //private readonly DepartmentRep departmentRep;
 
         //public DepartmentController1(DepartmentRep departmentRep)
         //{
         //    this.departmentRep = departmentRep;
         //}
-        
+
 
 
         // That We How Achive Dependency Injection
+        #endregion
+
+
        
+     
+
+        // The [SearchValue] Come From Attribute [name] in Index View
 
         public IActionResult Index(string SearchValue = null)
         {
+             
 
+           
             if (string.IsNullOrEmpty(SearchValue))
             {
 
@@ -64,18 +71,27 @@ namespace DemoCore.Controllers
 
         }
 
+
+        public IActionResult Details(int id)
+        {
+
+           
+
+            var data = departmentRep.GetById(id);
+            var result = mapper.Map<DepartmentVM>(data);
+            return View(result);
+            
+            
+            
+        }
+
+
         //This Action Just for Form View 
         public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Details(int id)
-        {
-            var data = departmentRep.GetById(id);
-            var result = mapper.Map<DepartmentVM>(data);
-            return View(result);
-        }
 
         //This Action responsibility for Receive Data Return From The [Form] 
         [HttpPost]
@@ -86,6 +102,10 @@ namespace DemoCore.Controllers
 
                 if (ModelState.IsValid) //Using Validation
                 {
+
+                    //Dpartment in Map Is The Entity Which  I Save Data In 
+                    // (model) Is The Source Which Department take Data From It.
+
                     var data = mapper.Map<Department>(model);
                     departmentRep.Create(data);
 
@@ -122,13 +142,13 @@ namespace DemoCore.Controllers
                 if(ModelState.IsValid)
                 {
                     var data = mapper.Map<Department>(model);
-                        departmentRep.Edit(data);
+                     departmentRep.Edit(data);
                     return RedirectToAction("Index");
                 }
               
                 else
                 {
-                    return View();
+                    return View(model);
                 }
             }
             catch (Exception)
@@ -145,14 +165,15 @@ namespace DemoCore.Controllers
             return View(result);
         }
 
-            [HttpPost]
+       [HttpPost]
+       //I Can Recieve (int Id) 
         public IActionResult Delete(DepartmentVM model)
         {
 
             try 
             {
 
-              var data = departmentRep.GetById(model.Id);
+                var data = departmentRep.GetById(model.Id);
 
                 departmentRep.Delete(data);
                 return RedirectToAction("Index");

@@ -1,17 +1,21 @@
 ﻿@model DemoCore.BLL.Models.ViewModels.MailVM
 @{
     ViewData["Title"] = "Index";
-    
+
 }
 
-<h2>Welcome To Mail Page</h2>
+
+<center>
+    <h2 style="color:red">Welcome To Mail Page</h2>
+</center>
+
 
 <div class="alert alert-success alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>@TempData["Msg"]</strong>
 </div>
 
-<form asp-action="CreateMail" asp-controller="Mail"  class="form-group">
+<form  asp-controller="Mail" asp-action="SendEMail"   class="form-group">
 
     <div class="row">
 
@@ -23,6 +27,8 @@
             <span asp-validation-for="Title" class="text-danger"> </span>
         </div>
     </div>
+
+
     <br /> <br />
 
     <div class="row">
@@ -38,13 +44,13 @@
     <br /> <br />
 
 
-           <center>
+    <center>
 
 
-               <input type="submit" value="Send" class="btn btn-primary" />
+        <input type="submit" value="Send" class="btn btn-primary" />
 
-               <input type="reset" value="Cancle" class="btn btn-danger" />
-           </center>
+        <input type="reset" value="Cancle" class="btn btn-danger" />
+    </center>
 
 </form>
 

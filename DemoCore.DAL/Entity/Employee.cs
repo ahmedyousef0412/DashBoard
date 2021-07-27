@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DemoCore.DAL.Entity
 {
-    [Table ("Employee")] // The Name I need Tp Create The Table Like It.
+    [Table ("Employee")] // The Name I need To Create The Table Like It.
     public class Employee
     {
 
@@ -16,8 +16,7 @@ namespace DemoCore.DAL.Entity
         public int Id { get; set; }
 
 
-        [Display(Name ="Name")]
-        [Required(ErrorMessage = "Enter Employee Name")]
+      
         [StringLength(50)]
         
         public string EmployeeName { get; set; }
@@ -33,18 +32,21 @@ namespace DemoCore.DAL.Entity
         public bool IsActive { get; set; }
 
 
-        public string   PhotoUrl { get; set; }
+        public string PhotoUrl { get; set; }
 
         public string CvUrl { get; set; }
         public string  Notes { get; set; }
 
         public string Email { get; set; }
 
-        //Navigation Property [Mean I used It Forign Key]
+
+
+       
         public int DepartmentId { get; set; }
 
 
         [ForeignKey("DepartmentId")]
+        //Navigation Property [Mean I used It Forign Key]
         public virtual Department Department { get; set; }
 
         public int DistrictId { get; set; }

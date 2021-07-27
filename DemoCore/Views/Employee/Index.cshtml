@@ -5,14 +5,17 @@
 
 }
 
+<center>
+    <div class="block-header">
+        <h1 style="color:red">Welcome To Employees</h1>
+    </div>
+</center>
 
-<div class="block-header">
-    <h1>Welcome To Employees</h1>
-</div>
 
 <a asp-controller="Employee" asp-action="Create" class="btn btn-primary ">Create New Employee</a>
 <br />
 <br />
+
 
 <form asp-controller="Employee" asp-action="Index" class="form-group">
 
@@ -70,16 +73,24 @@
                                 <tr class="thead-dark">
 
                                     <th>Name</th>
-                                    <th>Salary</th>
+
                                     <th>Address</th>
+
                                     <th>HireDate</th>
-                                    <th>IsActive</th>
-                                    <th>Notes</th>
-                                    <th>Email</th>
+
+
+                                    <th>photo</th>
+
+                                    <th>CV</th>
+
                                     <th>Department</th>
+
                                     <th>District</th>
+
                                     <th>Details</th>
+
                                     <th>Edit</th>
+
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -89,23 +100,30 @@
                                     <tr>
 
                                         <td>@item.EmployeeName</td>
-                                        <td>@item.Salary</td>
+
                                         <td>@item.Address</td>
+
                                         <td>@item.HireDate.Date.ToShortDateString()</td>
-                                        <td>@item.IsActive</td>
-                                        <td>@item.Notes</td>
-                                        <td>@item.Email</td>
+
+                                        <td><img src="~/Files/Imags/@item.PhotoUrl" width="100" height="100" /></td>
+
+                                        <td> <a href="~/Files/Docs/@item.CvUrl"> DownLoad CV</a></td>
+
                                         <td>@item.Department.DepartmentName</td>
+
                                         <td>@item.District.DistrictName</td>
 
+                                       
                                         <td><a asp-controller="Employee" asp-action="Details" asp-route-Id="@item.Id" class="btn btn-success">Details</a></td>
+
                                         <td><a asp-controller="Employee" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-success">Edit</a></td>
+
                                         <td><a asp-controller="Employee" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a></td>
 
 
 
                                     </tr>
-                                }
+                                 }
 
                             </tbody>
                         </table>

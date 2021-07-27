@@ -16,14 +16,14 @@ namespace DemoCore.BLL.Interfaces
 
 
         /// <summary>
-        /// i'm Not Using IEnumerable because i wont return [Just one Row ]
+        /// i'm Not Using IEnumerable because i won't return [Just one Row ]
         /// </summary>
 
         Employee GetById(int id);
 
 
         /// <summary>
-        /// i'm  Using IEnumerable because i wont return [Just one Row ] but may be i Have
+        /// i'm  Using IEnumerable because i won't return [Just one Row ] but may be i Have
         /// [one or more Employee have the same name work in one Department]
         /// </summary>
 

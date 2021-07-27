@@ -10,7 +10,7 @@ namespace DemoCore.BLL.Models.ViewModels
     public class MailVM
     {
 
-        public int Id { get; set; }
+       
 
         [Required(ErrorMessage = "Field Can't be Empty")]
         public string Title { get; set; }
@@ -19,9 +19,7 @@ namespace DemoCore.BLL.Models.ViewModels
         public string Message { get; set; }
 
 
-        [Required(ErrorMessage = "Field Can't be Empty ")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is Not Vaild")]
-        public string UserName { get; set; }
+        
 
     }
 }

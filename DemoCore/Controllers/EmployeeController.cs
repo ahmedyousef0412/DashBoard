@@ -24,10 +24,15 @@ namespace DemoCore.Controllers
         private readonly ICityRep cityRep;
         private readonly IDistricRep districRep;
 
-        public EmployeeController(IEmployeeRep employeeRep , 
-            IDepartmentRep departmentRep , IMapper mapper,
-            ICountryRep countryRep , ICityRep cityRep 
-            , IDistricRep districRep)
+
+        #endregion
+
+
+        #region Ctor
+        public EmployeeController(IEmployeeRep employeeRep,
+           IDepartmentRep departmentRep, IMapper mapper,
+           ICountryRep countryRep, ICityRep cityRep
+           , IDistricRep districRep)
         {
             this.employeeRep = employeeRep;
             this.departmentRep = departmentRep;
@@ -37,6 +42,8 @@ namespace DemoCore.Controllers
             this.districRep = districRep;
         }
         #endregion
+
+
 
         #region Actions
         public IActionResult Index(string SearchValue = null)
@@ -53,6 +60,9 @@ namespace DemoCore.Controllers
             {
                 var data = employeeRep.SearchByName(SearchValue);
                 var result = mapper.Map<IEnumerable<EmployeeVM>>(data);
+
+
+               
                 return View(result);
             }
 
@@ -63,7 +73,11 @@ namespace DemoCore.Controllers
         {
             var data = employeeRep.GetById(id);
             var result = mapper.Map<EmployeeVM>(data);
+
+
             return View(result);
+
+
         }
         
         public IActionResult Create()
@@ -76,11 +90,17 @@ namespace DemoCore.Controllers
              */
            
             //department have All item in Entity Department and i will loop on it in[view] 
-            ViewBag.department = new SelectList(departmentRep.Get(), "Id", "DepartmentName");
+
+            
+            ViewBag.department = new SelectList(departmentRep.Get() ,"Id", "DepartmentName");
 
             ViewBag.country = new SelectList(countryRep.Get(), "Id", "Name");
+
+
             return View();
         }
+
+
 
         [HttpPost]
         public IActionResult Create(EmployeeVM employee)
@@ -122,14 +142,16 @@ namespace DemoCore.Controllers
 
 
 
-        [HttpGet]
+     
         public IActionResult Edit(int id)
         {
             var data = employeeRep.GetById(id);
+
             var result = mapper.Map<EmployeeVM>(data);
+
             var depart = departmentRep.Get();
-            ViewBag.department = new SelectList
-                (depart, "Id", "DepartmentName",data.DepartmentId);
+
+            ViewBag.department = new SelectList(depart,"Id","DepartmentName", data.DepartmentId);
             return View(result);
         }
 
@@ -140,23 +162,19 @@ namespace DemoCore.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var map = mapper.Map<Employee>(employee);
-                    employeeRep.Edit(map);
-                    return RedirectToAction("Index", "Employee");
+                    var data = mapper.Map<Employee>(employee);
+                    employeeRep.Edit(data);
+                    return RedirectToAction("Index","Employee");
                 }
-                var dept = departmentRep.Get();
-                ViewBag.department = new SelectList(dept, "Id", "DepartmentName", employee.DepartmentId);
 
-                return View(employee);
+                return View();
                 
                 
             }
             catch (Exception )
             {
-                //EventLog log = new();
-                //log.Source = "Admin DashBoard";
-                //log.WriteEntry(e.Message, EventLogEntryType.Error);
-                return View(employee);
+                
+                return View();
 
             }
 
@@ -200,17 +218,21 @@ namespace DemoCore.Controllers
         }
         #endregion
 
+
+
         #region Ajax Call
 
 
         [HttpPost]
    
-        public IActionResult GetCityDataByCountryId(int CtryId)
+        public JsonResult GetCityDataByCountryId(int CtryId)
         {
 
             var data = cityRep.Get().Where(c => c.CountryId == CtryId);
-            //return NotFound();
-             return Json(data);
+
+            var map = mapper.Map<IEnumerable<CityVM>>(data);
+
+            return Json(map);
            
             
 
@@ -219,7 +241,9 @@ namespace DemoCore.Controllers
         public JsonResult GetDistrictByCityId(int CtyId)
         {
             var data = districRep.Get().Where(d => d.CityId == CtyId);
-            return Json(data);
+
+            var map = mapper.Map<IEnumerable<DistrictVM>>(data);
+            return Json(map);
         }
 
 

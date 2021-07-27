@@ -1,14 +1,9 @@
-﻿using AutoMapper;
-using DemoCore.BLL.Interfaces;
-using DemoCore.BLL.Models.ViewModels;
+﻿using DemoCore.BLL.Interfaces;
 using DemoCore.DAL.DataBase;
 using DemoCore.DAL.Entity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DemoCore.BLL.Repository
 {
@@ -29,15 +24,19 @@ namespace DemoCore.BLL.Repository
         public IEnumerable<Employee> Get()
         {
             var data = context.Employees
-                .Include(c=> c.Department)
-                .Include(c =>c.District)
-                .ToList();
+                .Include(c => c.Department)
+                .Include(c => c.District)
+                .Select(c => c);
             return data;
         }
 
         public Employee GetById(int id)
         {
-            var data = context.Employees.Where(e => e.Id == id).FirstOrDefault();
+            var data = context.Employees
+                .Include(e => e.Department)
+                .Include(e => e.District)
+                .Where(e => e.Id == id)
+                .FirstOrDefault();
             return data;
             
         }
@@ -45,8 +44,11 @@ namespace DemoCore.BLL.Repository
         public IEnumerable<Employee> SearchByName(string name)
         {
 
-            var data = context.Employees.Where(e => e.EmployeeName == name)
-             .Select(e =>e);
+            var data = context.Employees
+                .Include(e => e.Department)
+                .Include(e => e.District)
+                .Where(e => e.EmployeeName == name)
+                .Select(e => e);
             return data;
         }
 
@@ -61,15 +63,13 @@ namespace DemoCore.BLL.Repository
 
         public void Edit(Employee obj)
         {
-           
-            context.Entry(obj).State =
-                EntityState.Modified;
+            context.Entry(obj).State =EntityState.Modified;
             context.SaveChanges();
         }
+
+
         public void Delete(Employee obj)
         {
-           
-
             context.Employees.Remove(obj);
             context.SaveChanges();
         }

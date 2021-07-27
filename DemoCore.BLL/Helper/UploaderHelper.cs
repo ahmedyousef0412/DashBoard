@@ -21,12 +21,17 @@ namespace DemoCore.BLL.Helper
 
 
 
+
+                //Use Guid.NewGuid() to generate Number contain 36 digit
+                //Use Path.GetFileName To Remove The Token
                 var FileName = Guid.NewGuid() + Path.GetFileName(_File.FileName);
 
 
+
+                //Use combine because If I forget [/] combine put it
                 var FinalPath = Path.Combine(FolderPath, FileName);
 
-
+                //FileMode.Create Save The FinalPath On Server
                 using (var Stream = new FileStream(FinalPath, FileMode.Create))
                 {
                     _File.CopyTo(Stream);

@@ -9,6 +9,13 @@ namespace DemoCore.DAL.Entity
    public class Country
     {
 
+
+        /*
+          Use HashSet<Table> For Return Data Without Duplicated
+
+          Use it when My Entity have ICollection
+         
+        */
         public Country()
         {
             City = new HashSet<City>();

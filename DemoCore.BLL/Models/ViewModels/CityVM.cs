@@ -1,6 +1,7 @@
 ﻿using DemoCore.DAL.Entity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace DemoCore.BLL.Models.ViewModels
   public  class CityVM
     {
         public int Id { get; set; }
+
+        [Required]
         public string CityName { get; set; }
 
         public int CountryId { get; set; }

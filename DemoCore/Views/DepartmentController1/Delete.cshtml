@@ -4,7 +4,10 @@
     Layout = "~/Views/Layout/MainLayout.cshtml";
 }
 
-<h2>Delete Department</h2>
+<center>
+    <h2 style="color:red">Delete Department</h2>
+</center>
+
 <h1>@Model.DepartmentName</h1>
 
 
@@ -38,13 +41,13 @@
         Using asp-for to told the Input this Data Belong to who
            Instead Of [Name]
     *@
-    <input type="text" asp-for="DepartmentName" class="form-control" disabled="disabled" />
+    <input type="text" asp-for="DepartmentName" class="form-control" disabled />
     
     <br />
 
 
     <label> Department Code </label>
-    <input type="text" asp-for="Departmentcode" class="form-control" disabled="disabled" />
+    <input type="text" asp-for="Departmentcode" class="form-control" disabled />
     
 
     <br />
@@ -52,7 +55,7 @@
     <center>
 
         <input type="submit" value="Delete" class="btn btn-danger" />
-        <input type="reset" value="Cancle" class="btn btn-danger" />
+       
         <a asp-controller="DepartmentController1" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"> Edit Department </a>
 
         <a asp-controller="DepartmentController1" asp-action="Index" class="btn btn-success"> Back To Department </a>

@@ -9,7 +9,7 @@ namespace DemoCore.BLL.Models.ViewModels
     public class EmployeeVM
     {
 
-        [Key]
+      
         public int Id { get; set; }
 
 
@@ -44,14 +44,18 @@ namespace DemoCore.BLL.Models.ViewModels
         public IFormFile Photo { get; set; }
 
         public IFormFile CV { get; set; }
+
+
+
         public string PhotoUrl { get; set; }
 
         public string CvUrl { get; set; }
 
+
         [Required(ErrorMessage = "Choose Department")]
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
-        public Department  Department { get; set; }
+        public Department Department { get; set; }
 
 
 

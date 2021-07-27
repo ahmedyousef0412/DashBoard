@@ -16,11 +16,16 @@ namespace DemoCore.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateMail(MailVM mail)
+        public IActionResult SendEMail (MailVM mail)
         {
-            var Send = MailSender.SendMail(mail);
-            TempData["Msg"] = Send;
-            return View();
+
+            TempData["Msg"] = MailSender.SendMail(mail);
+
+            
+            return RedirectToAction("Index");
+            
         }
+
+
     }
 }

@@ -26,8 +26,9 @@ namespace DemoCore
         public void ConfigureServices(IServiceCollection services)
         {
 
-
-            services.AddControllersWithViews().AddNewtonsoftJson(opts => {
+            //Configure For Newtonsoft
+            services.AddControllersWithViews().AddNewtonsoftJson(opts =>
+            {
                 opts.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
 
@@ -52,9 +53,13 @@ namespace DemoCore
 
             //[Take One Instance For Each User]
             services.AddScoped<IDepartmentRep, DepartmentRep>();
+
             services.AddScoped<IEmployeeRep, EmployeeRep>();
+
             services.AddScoped<ICountryRep, CountryRep>();
+
             services.AddScoped<ICityRep, CityRep>();
+
             services.AddScoped<IDistricRep, DistrictRep>();
 
 
@@ -105,6 +110,8 @@ namespace DemoCore
 
             app.UseAuthorization();
 
+
+            //EndPoint for Areas
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
