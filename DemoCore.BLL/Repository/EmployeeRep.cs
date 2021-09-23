@@ -12,6 +12,7 @@ namespace DemoCore.BLL.Repository
         private readonly DataContext context;
        
 
+        //This is Mean Inject [Using Dependancy Injection]
         public EmployeeRep(DataContext context )
         {
             this.context = context;

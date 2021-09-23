@@ -22,14 +22,14 @@ namespace DemoCore.BLL.Helper
 
                     smtp.Credentials = new NetworkCredential("lajjayousef66@gmail.com", "01201394400omeryousef");
                 
-                    smtp.Send("lajjayousef66@gmail.com", "ahmedousefy62@gmail.com", mail.Title, mail.Message);
-                    
+                   // smtp.Send("lajjayousef66@gmail.com", "ahmedousefy62@gmail.com", mail.Title, mail.Message);
+                    smtp.Send("lajjayousef66@gmail.com", "raaedserag@gmail.com", mail.Title, mail.Message);
                 }
                 
 
                 return "Done ! Mail Sent Successfully";
 
-
+               
 
 
             }

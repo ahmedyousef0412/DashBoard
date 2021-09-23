@@ -1,26 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using DemoCore.BLL.Interfaces;
+using DemoCore.BLL.Models.ViewModels;
+using DemoCore.DAL.Entity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DemoCore.BLL.Models.ViewModels;
-using DemoCore.BLL.Repository;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
-using DemoCore.BLL.Interfaces;
-using System.Diagnostics;
-using DemoCore.BLL.DTO;
-using AutoMapper;
-using DemoCore.DAL.Entity;
 
 namespace DemoCore.Controllers
 {
     public class DepartmentController1 : Controller
     {
+        #region Field
         private readonly IDepartmentRep departmentRep;
         private readonly IMapper mapper;
-
+        #endregion
 
         //Loosly Coupled
+
+        #region Ctor
 
         public DepartmentController1(IDepartmentRep departmentRep ,IMapper mapper)
         {
@@ -42,9 +39,9 @@ namespace DemoCore.Controllers
         // That We How Achive Dependency Injection
         #endregion
 
+        #endregion 
 
-       
-     
+        #region Actions
 
         // The [SearchValue] Come From Attribute [name] in Index View
 
@@ -186,6 +183,7 @@ namespace DemoCore.Controllers
             
         }
 
-        
+        #endregion
+
     }
 }

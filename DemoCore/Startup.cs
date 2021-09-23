@@ -30,9 +30,17 @@ namespace DemoCore
             services.AddControllersWithViews().AddNewtonsoftJson(opts =>
             {
                 opts.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                opts.SerializerSettings.ReferenceLoopHandling
+               = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
 
             });
+
+
+            
+
+            // Controllers Without View [API]
+            services.AddControllers();
 
 
             // Enahancment In Connection String
@@ -86,9 +94,6 @@ namespace DemoCore
             (TokenOptions.DefaultProvider);
 
 
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -125,6 +130,14 @@ namespace DemoCore
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Account}/{action=Login}/{id?}");
+            });
+
+            //EndPoint For Api
+            app.UseEndpoints(endpoints =>
+            {
+
+                endpoints.MapDefaultControllerRoute();
+
             });
         }
     }

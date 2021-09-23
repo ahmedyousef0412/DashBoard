@@ -11,16 +11,16 @@
 
 <form asp-action="Edit" asp-controller="Employee" class="form-group" enctype="multipart/form-data">
 
-    <div asp-validation-summary="All" class="text-danger"></div> 
+    <div asp-validation-summary="All" class="text-danger"></div>
 
 
     <input type="hidden" asp-for="Id" class="form-control" />
 
-   
-    <img src="~/Files/Imags/@Model.PhotoUrl" width="100" height="100" />
+
+    <img src="~/Files/Imags/@Model.PhotoUrl" width="100" height="100"  />
     <br /> <br />
 
-    <a href="~/Files/Docs/@Model.CvUrl" class="btn btn-primary">DownLoad CV</a>
+    <a href="~/Files/Docs/@Model.CvUrl"  class="btn btn-primary">DownLoad CV</a>
 
     <br /> <br />
     <div class="row">
@@ -94,6 +94,65 @@
 
     <br /><br />
 
+
+
+
+
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label>Country</label>
+            <select id="CountryList" class="form-control" asp-items="(SelectList)ViewBag.country">
+                <option>Choose Country</option>
+            </select>
+
+
+        </div>
+    </div>
+
+    <br /> <br />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <label>City</label>
+            <select id="CityList" class="form-control" >
+                <option>Choose City</option>
+            </select>
+
+
+        </div>
+    </div>
+
+
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label>District</label>
+            <select asp-for="DistrictId" class="form-control" >
+                <option>Choose District</option>
+            </select>
+
+
+        </div>
+    </div>
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Upload Photo </label>
+            <input asp-for="Photo" class="form-control"  di/>
+
+        </div>
+    </div>
+    <br /> <br />
+    <div class="row">
+        <div class="col-lg-5">
+            <label> Upload CV </label>
+            <input asp-for="CV" class="form-control" />
+
+        </div>
+    </div>
+    <br /> <br />
+
     <div class="custom-control custom-checkbox row">
         <div class="col-lg-5">
             <input type="checkbox" asp-for="IsActive" class="custom-control-input">
@@ -116,6 +175,80 @@
 @section MicrosoftValidation {
     <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <script>
+
+        $(function () {
+
+            $("#CountryList").change(function () {
+
+
+                $("#CityList").empty();
+                $("#CityList").append("<option>Choose City</option>");
+
+
+                var CountryId = $("#CountryList option:selected").val();
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Employee/GetCityDataByCountryId",
+                    data: { CtryId: CountryId },
+
+                    success: function (res) {
+
+                        $.each(res, function (i, e) {
+
+                            $("#CityList").append("<option value='" + e.Id + "'>" + e.CityName + "</option>");
+                            $("#CityList").selectpicker('refresh');
+                        });
+                    }
+
+
+                });
+            });
+
+
+
+        });
+
+        $(function () {
+
+            $("#CityList").change(function () {
+
+                $("#DistrictId").empty();
+                $("#DistrictId").append("<option>Choose District</option>");
+
+
+                var CityId = $("#CityList option:selected").val();
+
+                $.ajax({
+
+
+                    type: "POST",
+                    url: "/Employee/GetDistrictByCityId",
+                    data: { CtyId: CityId },
+                    success: function (res) {
+
+                        $.each(res, function (i, e) {
+
+                            $("#DistrictId").append("<option value='" + e.Id + "'>" + e.DistrictName + "</option>");
+                            $("#DistrictId").selectpicker('refresh');
+                        });
+                    }
+                });
+
+            });
+
+
+        });
+
+
+
+    </script>
+
+
 }
 
 

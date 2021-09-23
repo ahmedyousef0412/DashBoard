@@ -24,13 +24,9 @@ namespace DemoCore.Controllers
 
         public IActionResult Index()
         {
-           
                 var data = manager.Roles;
 
                 return View(data);
-            
-           
-
             
         }
         public IActionResult CreateRole()

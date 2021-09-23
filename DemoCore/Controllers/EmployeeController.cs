@@ -3,7 +3,6 @@ using DemoCore.BLL.Helper;
 using DemoCore.BLL.Interfaces;
 using DemoCore.BLL.Models.ViewModels;
 using DemoCore.DAL.Entity;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -12,7 +11,7 @@ using System.Linq;
 
 namespace DemoCore.Controllers
 {
-    
+
     public class EmployeeController : Controller
     {
 
@@ -152,6 +151,7 @@ namespace DemoCore.Controllers
             var depart = departmentRep.Get();
 
             ViewBag.department = new SelectList(depart,"Id","DepartmentName", data.DepartmentId);
+            ViewBag.country = new SelectList(countryRep.Get(), "Id", "Name");
             return View(result);
         }
 
@@ -167,9 +167,12 @@ namespace DemoCore.Controllers
                     return RedirectToAction("Index","Employee");
                 }
 
-                return View();
-                
-                
+                else
+                {
+                    return View(employee);
+                }
+
+
             }
             catch (Exception )
             {

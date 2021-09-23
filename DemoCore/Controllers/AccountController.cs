@@ -144,6 +144,9 @@ namespace DemoCore.Controllers
 
         }
 
+
+
+
         [HttpPost]
         public async Task<IActionResult> LogOut()
         {
@@ -214,8 +217,6 @@ namespace DemoCore.Controllers
         }
 
 
-
-
         public IActionResult ResetPassword(string Email , string Token)
 
         {
@@ -227,6 +228,9 @@ namespace DemoCore.Controllers
             
             return View();
         }
+
+
+
 
 
         [HttpPost]

@@ -31,11 +31,11 @@ namespace DemoCore.DAL.Entity
         [ForeignKey("CountryId")]
 
         /*
-           I use [virtual] Taht Mean I Work Using Eager Load
+           I use [virtual] Taht Mean I Work Using Lazy Load
            When City Will Call Country
 
 
-         "[The Default Is Lazy Load] => Don't Return The Related Entity
+         "[The Default Is Eager Load] => Don't Return The Related Entity
          */
         public virtual Country Country { get; set; }
 
