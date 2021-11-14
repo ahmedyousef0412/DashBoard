@@ -10,25 +10,13 @@
 </center>
 
 
-<div asp-validation-summary="All" class="text-danger"></div> @*Using Validation*@
+<div asp-validation-summary="All" class="text-danger"></div> 
 
-@*
-
-    I Use [asp-action="Create" asp-controller="DepartmentController1"] because When I Click
-    On Button Reset or Submit  need to go to Controller/Action To See If This Data are [true]
-    or Not
-
-
-*@
 
 <form asp-action="Create" asp-controller="Employee" class="form-group" enctype="multipart/form-data">
 
 
 
-    @*
-        Using asp-for to told the Input this Data Belong to who
-           Instead Of [Name]
-    *@
     <div class="row">
         <div class="col-lg-5">
             <label> Name </label>
@@ -211,7 +199,10 @@
                
                      $.each(res, function(i,e) {
 
-                         $("#CityList").append("<option value='" + e.Id + "'>" + e.CityName + "</option>");
+                         //$("#CityList").append("<option value='" + e.Id + "'>" + e.CityName + "</option>");
+
+                         $("#CityList").append(`<option value="${e.Id}">${e.CityName} </option>`);
+
                          $("#CityList").selectpicker('refresh');
                      });
                  }
